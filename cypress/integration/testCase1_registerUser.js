@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
 
 
-describe("E2E - Test Cases", () => {
+describe("TC1 - Register User", () => {
     it("Register User", () => {
         cy.visit("/")
         cy.get("body").should("be.visible")
