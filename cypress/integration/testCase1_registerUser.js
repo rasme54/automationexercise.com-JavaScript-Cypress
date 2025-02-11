@@ -1,6 +1,5 @@
 /// <reference types="cypress" />
 
-const { should } = require("chai")
 
 describe("E2E - Test Cases", () => {
     it("Register User", () => {
@@ -17,14 +16,14 @@ describe("E2E - Test Cases", () => {
 
         cy.get("@nameInput").type("testUserName")
         cy.get("@nameInput").invoke("val").as("valueNameInput")
-        cy.get("@emailInput").type("testusername@MediaList.pl")
+        cy.get("@emailInput").type("testemail3@email.pl")
         cy.get("@emailInput").invoke("val").as("valueEmailInput")
         // confirming data
         cy.get("button[type='submit']").contains("Signup").click()
 
         // verification of page visability
         cy.url().should("include", "/signup")
-        cy.get("b").contains("Enter Account Information").should("be.visible")
+        cy.contains("Enter Account Information").should("be.visible")
         
         // entering data
         // radio
@@ -55,25 +54,34 @@ describe("E2E - Test Cases", () => {
         // special offers
         cy.get("#optin").check()
 
-        // // first name
-        // cy.get("input[id='first_name']").type("firstName")
-        // // last name
-        // cy.get("input[id='last_name']").type("lastName")
-        // // address
-        // cy.get("input[id='address1']").type("address1")
-        // cy.get("input[id='address2']").type("address2")
-        // cy.get("select[id='country']").select("Canada")
-        // cy.get("input[id='state']").type("state1")
-        // cy.get("input[id='city']").type("city1")
-        // cy.get("input[id='zipcode']").type("123123")
-        // // phone number
-        // cy.get("input[id='mobile_number']").type("123456789")
+        // first name
+        cy.get("input[id='first_name']").type("firstName")
+        // last name
+        cy.get("input[id='last_name']").type("lastName")
+        // address
+        cy.get("input[id='address1']").type("address1")
+        cy.get("input[id='address2']").type("address2")
+        cy.get("select[id='country']").select("Canada")
+        cy.get("input[id='state']").type("state1")
+        cy.get("input[id='city']").type("city1")
+        cy.get("input[id='zipcode']").type("123123")
+        // phone number
+        cy.get("input[id='mobile_number']").type("123456789")
 
-        // //sumbit
-        // cy.get("button").contains("Create Account").click
+        // sumbit
+        cy.contains("Create Account").click()
 
-        // cy.get("b").contains("Account Created!").as("successTitle")
-        // cy.get("@successTitle").should("be.visible")
+        cy.get("b").contains("Account Created!").as("successTitle")
+        cy.get("@successTitle").should("be.visible")
+
+        // continue
+        cy.contains("Continue").click()
+        cy.contains("Logged in as testUserName").should("be.visible")
+
+        // delete account
+        cy.contains(" Delete Account").click()
+
+        cy.contains("Account Deleted!").should("be.visible")
         
 
     })
