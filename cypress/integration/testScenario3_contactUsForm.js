@@ -21,7 +21,12 @@ describe("TS2 - ContactUsForm", () => {
         cy.get("div[class='form-group col-md-12']").eq(1).type("testMessage")
 
         //upload-file part
+        cy.get("input[name='upload_file']").attachFile("../fixtures/test.jpg")
+        //cy.get("input[name='upload_file']").should("contain", "test.jpg")
 
+        cy.get("input[name='upload_file']").then(asercjaPliku => {
+            expect(asercjaPliku).to.contain("test.jpg")
+        })
         //submit
         cy.get("input[value='Submit']").click()
 

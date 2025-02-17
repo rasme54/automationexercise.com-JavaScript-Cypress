@@ -2,7 +2,7 @@
 
 
 describe("TS1 - Register User", () => {
-    it.only("Register User", () => {
+    it("Register User", () => {
         cy.visit("/")
         cy.get("body").should("be.visible")
         // entry to the login/registration page
@@ -85,7 +85,17 @@ describe("TS1 - Register User", () => {
 
         cy.contains("Account Deleted!").should("be.visible")
     })
-    it("Register User with existing email", () => {
+    it.only("Register User with existing email", () => {
+        cy.visit("/")
+        cy.get("body").should("be.visible")
+        // entry to the login/registration page
+        cy.contains("[href='/login']", " Signup / Login").click()
+        cy.url().should("include", "/login")
 
+        //sign-in form visability
+        cy.contains("New User Signup!").should("be.visible")
+
+        //typing name and existing email
+        
     })
 })
