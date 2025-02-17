@@ -20,7 +20,10 @@ describe("TS4 - VerifyPages", () => {
         cy.contains("View Product").eq(0).click()
 
         //Verify that detail detail is visible: product name, category, price, availability, condition, brand
-        cy.get("input[class='form-control']").eq(3).attachFile("../fixtures/test.jpg")
+        // product name
+        cy.get(".product-information > h2").should("be.visible")
+        // category
+        cy.get(".product-information > p").should("be.visible")
 
 
     })

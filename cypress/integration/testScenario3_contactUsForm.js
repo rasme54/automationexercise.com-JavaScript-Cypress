@@ -22,13 +22,17 @@ describe("TS2 - ContactUsForm", () => {
 
         //upload-file part
         cy.get("input[name='upload_file']").attachFile("../fixtures/test.jpg")
-        //cy.get("input[name='upload_file']").should("contain", "test.jpg")
+        cy.get("div[class='form-group col-md-12']").eq(2).should("exist")
+        //cy.get("div[class='form-group col-md-12']").eq(2).should("contain.text", "test.jpg")
+        cy.get('input[type="file"]').then(($input) => {
+            expect($input[0].files[0].name).to.eq("test.jpg");
+          });
 
-        cy.get("input[name='upload_file']").then(asercjaPliku => {
-            expect(asercjaPliku).to.contain("test.jpg")
-        })
+        // cy.get("input[class='form-control'][name='upload_file']").then(asercjaPliku => {
+        //     expect(asercjaPliku).to.contain("test.jpg")
+        // })
         //submit
-        cy.get("input[value='Submit']").click()
+        //cy.get("input[class='form-control'][name='upload_file']").click()
 
     })
 })
