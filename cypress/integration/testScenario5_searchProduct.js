@@ -13,5 +13,9 @@ describe("TS5 - SearchProduct", () => {
         //finding Sleeveless Dress
         cy.get("#search_product").type("Sleeveless Dress")
         cy.get("#submit_search").click()
+
+        //assertion
+        cy.get(".product-image-wrapper").should("be.visible")
+        cy.get(".product-image-wrapper").should("contain", "Sleeveless Dress")
     })
 })
