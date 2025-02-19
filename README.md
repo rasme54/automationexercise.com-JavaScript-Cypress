@@ -15,18 +15,18 @@ To run this project, make sure you have **Node.js installed**, and then:
 
  1. Clone repository to your computer.
  2. Open your IDE and go to the main project folder by using the command in the terminal: 
-	  ```cd automationexercise.com``` 
+	 <br>```cd automationexercise.com``` 
  3.  Install Cypress in the appropriate version by using the command in the terminal:
-	 ```npm install cypress@9.5.1 --save-dev```
+	 <br>```npm install cypress@9.5.1 --save-dev```
  4. Make sure that you have installed necessary libraries, your **package.json** file should contains:
-	 <a><img src="https://i.ibb.co/VWRs4j0x/dependencies.jpg" alt="dependencies" border="0"></a>
+	 <br><a><img src="https://i.ibb.co/VWRs4j0x/dependencies.jpg" alt="dependencies" border="0"></a><br>
  5. Make sure your **commands.js** file contains library references:
-	 <a><img src="https://i.ibb.co/DfZSHXpf/dependencies2.jpg" alt="dependencies2" border="0"></a>
+	 <br><a><img src="https://i.ibb.co/DfZSHXpf/dependencies2.jpg" alt="dependencies2" border="0"></a><br>
 6. If you cannot find dependencies for any library, use the command:
-	```npm install --save-dev "cypress-file-upload"```
-	or
-	```npm install --save-dev "cypress-real-events"```
-	and **check package.json and commands.js again**
+	<br>```npm install --save-dev "cypress-file-upload"```
+	<br>or
+	<br>```npm install --save-dev "cypress-real-events"```
+	<br>and **check package.json and commands.js again**
 7. In project's main folder use:
-	```npx cypress open```
-	and run test :)
+	<br>```npx cypress open```
+	
