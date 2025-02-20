@@ -26,7 +26,7 @@ To run this project, make sure you have **Node.js installed**, and then:
 	<br>```npm install --save-dev "cypress-file-upload"```
 	<br>or
 	<br>```npm install --save-dev "cypress-real-events"```
-	<br>and **check package.json and commands.js again**
-7. In project's main folder use:
+	<br>and **check package.json  again**
+7. If you used any of the commands from point 6, **add a reference to the commands.js** file manually ("import" commands from ponit 5)
+8. In project's main folder use:
 	<br>```npx cypress open```
-	
