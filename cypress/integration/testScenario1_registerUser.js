@@ -3,7 +3,7 @@
 describe("TS1 - Register User", () => {
   it("Register User", () => {
     cy.visit("/");
-    cy.get("body").should("be.visible");
+    const pageBody = cy.get("body").should("be.visible");
     // entry to the login/registration page
     cy.contains("[href='/login']", " Signup / Login").click();
     cy.url().should("include", "/login");
@@ -84,9 +84,9 @@ describe("TS1 - Register User", () => {
 
     cy.contains("Account Deleted!").should("be.visible");
   });
-  it.only("Register User with existing email", () => {
+  it("Register User with existing email", () => {
     cy.visit("/");
-    cy.get("body").should("be.visible");
+    pageBody.should("be.visible");
     // entry to the login/registration page
     cy.contains("[href='/login']", " Signup / Login").click();
     cy.url().should("include", "/login");
