@@ -1,0 +1,18 @@
+# Node.js dependencies
+node_modules/
+
+# Cypress artefakty i logi
+cypress/screenshots/
+cypress/videos/
+cypress/downloads/
+cypress/results/
+cypress/reports/
+cypress/logs/
+
+# Pliki konfiguracyjne systemowe i IDE
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Pliki środowiskowe
+.env
