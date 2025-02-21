@@ -10,7 +10,7 @@ describe("TS1 - Register User", () => {
   const utils = new Utils();
   const signupPage = new SignupPage();
 
-  it.only("Register User", () => {
+  it("Register User", () => {
     const userName = "testUserName";
     const userEmail = "testemail9@email.pl";
     const userPassword = "PASSword123!";
@@ -53,15 +53,12 @@ describe("TS1 - Register User", () => {
     cy.get("div.col-sm-9.col-sm-offset-1 > h2 > b").as("sectionTitle");
     utils.isStringVisible("@sectionTitle", "Account Created!");
 
-    //at this point there is critical bug on the site and there is no option to continue
-    //continue button doesn't repond
-
-    //utils.clickButton("a[data-qa='continue-button']")
+    utils.clickButton("a[data-qa='continue-button']");
     //cy.get('a i.fa-user').parent().as("LoggedAsButton")
     //homePage.checkIsUserLoggedIn("@LoggedAsButton", userName)
 
-    //utils.clickButton("a[href='/delete account']")
-    //utils.isStringVisible("@sectionTitle", "Account Deleted!")
+    utils.clickButton("a[href='/delete_account']");
+    utils.isStringVisible("@sectionTitle", "Account Deleted!");
   });
   it("Register User with existing email", () => {
     const userName = "testUserName";
