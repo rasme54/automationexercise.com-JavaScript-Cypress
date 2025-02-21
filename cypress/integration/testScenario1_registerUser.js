@@ -5,83 +5,78 @@ import Utils from "../support/pageObject/utils";
 import SignupPage from "../support/pageObject/signupPage";
 
 describe("TS1 - Register User", () => {
-  const homePage = new HomePage()
-  const loginPage = new LoginPage()
-  const utils = new Utils()
-  const signupPage = new SignupPage()
+  const homePage = new HomePage();
+  const loginPage = new LoginPage();
+  const utils = new Utils();
+  const signupPage = new SignupPage();
 
   it.only("Register User", () => {
+    const userName = "testUserName";
+    const userEmail = "testemail9@email.pl";
+    const userPassword = "PASSword123!";
 
-    const userName = "testUserName"
-    const userEmail = "testemail4@email.pl"
+    homePage.selectLoginPage();
+    utils.isStringVisible("div.signup-form > h2", "New User Signup!");
 
-    homePage.selectLoginPage()
-    utils.isStringVisible("div.signup-form > h2", "New User Signup!")
+    loginPage.typeInputData("input[data-qa='signup-name']", userName);
+    loginPage.typeInputData("input[data-qa='signup-email']", userEmail);
+    utils.clickButton("button[data-qa='signup-button']");
 
-    loginPage.typeNewUserData("input[data-qa='signup-name']", userName)
-    loginPage.typeNewUserData("input[data-qa='signup-email']", userEmail)
-    loginPage.acceptData("button[data-qa='signup-button']")
+    utils.isPageUrlCorrect("/signup");
+    utils.isStringVisible(
+      "div.login-form > h2 >b",
+      "Enter Account Information",
+    );
 
-    utils.isPageUrlCorrect("/signup")
-    utils.isStringVisible("div.login-form > h2 >b", "Enter Account Information")
+    signupPage.chooseRadioWithTitle("div[id='uniform-id_gender1']");
+    signupPage.isInputDataCorrect("input[id='name']", userName);
+    signupPage.isInputDataCorrect("input[id='email']", userEmail);
+    signupPage.typeSignUpData("input[id='password']", userPassword);
+    signupPage.selectFormDropdown("select[id='days']", "12");
+    signupPage.selectFormDropdown("select[id='months']", "4");
+    signupPage.selectFormDropdown("select[id='years']", "2018");
+    signupPage.markCheckbox("input[id='newsletter']");
+    signupPage.markCheckbox("input[id='optin']");
+    signupPage.typeSignUpData("input[id='first_name']", "firstName");
+    signupPage.typeSignUpData("input[id='last_name']", "lastName");
+    signupPage.typeSignUpData("input[id='address1']", "address1");
+    signupPage.typeSignUpData("input[id='address2']", "address2e");
+    signupPage.selectFormDropdown("select[id='country']", "Canada");
+    signupPage.typeSignUpData("input[id='state']", "state1");
+    signupPage.typeSignUpData("input[id='city']", "city1");
+    signupPage.typeSignUpData("input[id='zipcode']", "123123");
+    signupPage.typeSignUpData("input[id='mobile_number']", "123456789");
 
-    signupPage.chooseRadioWithTitle("div[id='uniform-id_gender1']")
-    signupPage.typeSignUpData()
+    utils.clickButton("button[data-qa='create-account']");
 
+    utils.isPageUrlCorrect("/account_created");
+    cy.get("div.col-sm-9.col-sm-offset-1 > h2 > b").as("sectionTitle");
+    utils.isStringVisible("@sectionTitle", "Account Created!");
 
-    signupPage.isInputDataCorrect("input[id='name']", userName)
-    signupPage.isInputDataCorrect("input[id='email']", userEmail)
-    signupPage.typeSignUpData("input[id='password']", "PASSword123!")
+    //at this point there is critical bug on the site and there is no option to continue
+    //continue button doesn't repond
 
-    signupPage.selectDateOfBirth("select[id='days']", "12")
-    signupPage.selectDateOfBirth("select[id='months']", "April")
-    signupPage.selectDateOfBirth("select[id='years']", "2018")
-    
+    //utils.clickButton("a[data-qa='continue-button']")
+    //cy.get('a i.fa-user').parent().as("LoggedAsButton")
+    //homePage.checkIsUserLoggedIn("@LoggedAsButton", userName)
 
-    // // newsletter
-    // cy.get("#newsletter").check();
-    // // special offers
-    // cy.get("#optin").check();
-
-    // // first name
-    // cy.get("input[id='first_name']").type("firstName");
-    // // last name
-    // cy.get("input[id='last_name']").type("lastName");
-    // // address
-    // cy.get("input[id='address1']").type("address1");
-    // cy.get("input[id='address2']").type("address2");
-    // cy.get("select[id='country']").select("Canada");
-    // cy.get("input[id='state']").type("state1");
-    // cy.get("input[id='city']").type("city1");
-    // cy.get("input[id='zipcode']").type("123123");
-    // // phone number
-    // cy.get("input[id='mobile_number']").type("123456789");
-
-    // // sumbit
-    // cy.contains("Create Account").click();
-
-    // cy.get("b").contains("Account Created!").as("successTitle");
-    // cy.get("@successTitle").should("be.visible");
-
-    // // continue
-    // cy.contains("Continue").click();
-    // cy.contains("Logged in as testUserName").should("be.visible");
-
-    // // delete account
-    // cy.contains(" Delete Account").click();
-
-    // cy.contains("Account Deleted!").should("be.visible");
+    //utils.clickButton("a[href='/delete account']")
+    //utils.isStringVisible("@sectionTitle", "Account Deleted!")
   });
   it("Register User with existing email", () => {
-    cy.visit("/");
-    pageBody.should("be.visible");
-    // entry to the login/registration page
-    cy.contains("[href='/login']", " Signup / Login").click();
-    cy.url().should("include", "/login");
+    const userName = "testUserName";
 
-    //sign-in form visability
-    cy.contains("New User Signup!").should("be.visible");
+    homePage.selectLoginPage();
+    loginPage.typeInputData("input[data-qa='signup-name']", userName);
+    loginPage.typeInputData(
+      "input[data-qa='signup-email']",
+      "testemail@email.pl",
+    );
+    utils.clickButton("button[data-qa='signup-button']");
 
-    //typing name and existing email
+    utils.isStringVisible(
+      "form[action='/signup'] > p",
+      "Email Address already exist!",
+    );
   });
 });
