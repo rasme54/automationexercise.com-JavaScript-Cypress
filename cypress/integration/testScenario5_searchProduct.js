@@ -1,20 +1,18 @@
 /// <reference types="cypress" />
+import HomePage from "../support/pageObject/homePage";
+import ProductPage from "../support/pageObject/productsPage";
 
 describe("TS5 - SearchProduct", () => {
+  const homePage = new HomePage();
+  const productPage = new ProductPage();
+
   it("SearchProduct Page", () => {
-    // navigate and check visability of the website
-    cy.visit("/");
-    cy.get("body").should("be.visible");
-    cy.contains(" Products").click();
-    cy.url().should("include", "/products");
-    cy.get("body").should("be.visible");
+    homePage.selectProductPage();
+    productPage.findProduct("Sleeveless Dress");
+    productPage.isProductVisible("Sleeveless Dress");
 
-    //finding Sleeveless Dress
-    cy.get("#search_product").type("Sleeveless Dress");
-    cy.get("#submit_search").click();
-
-    //assertion
-    cy.get(".product-image-wrapper").should("be.visible");
-    cy.get(".product-image-wrapper").should("contain", "Sleeveless Dress");
+    // //assertion
+    // cy.get(".product-image-wrapper").should("be.visible");
+    // cy.get(".product-image-wrapper").should("contain", "Sleeveless Dress");
   });
 });

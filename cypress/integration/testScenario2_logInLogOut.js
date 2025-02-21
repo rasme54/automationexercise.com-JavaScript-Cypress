@@ -21,7 +21,7 @@ describe("TS2 - LogInLogOut", () => {
   it("Log in - Negative Case", () => {
     // navigate and check visability of the website
     cy.visit("/");
-    cy.get("body").should("be.visible");
+    pageBody.should("be.visible");
 
     cy.contains(" Signup / Login").click();
     cy.contains("Login to your account").should("be.visible");

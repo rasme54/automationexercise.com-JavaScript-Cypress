@@ -4,11 +4,9 @@ describe("TS1 - Register User", () => {
   it("Register User", () => {
     cy.visit("/");
     const pageBody = cy.get("body").should("be.visible");
-    // entry to the login/registration page
-    cy.contains("[href='/login']", " Signup / Login").click();
-    cy.url().should("include", "/login");
 
-    //sign-in form visability
+    cy.contains("[href='/login']", " Signup / Login").as(signUpButton).click();
+    cy.url().should("include", "/login");
     cy.contains("New User Signup!").should("be.visible");
 
     // entering sign-up data
