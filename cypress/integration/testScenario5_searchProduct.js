@@ -10,9 +10,5 @@ describe("TS5 - SearchProduct", () => {
     homePage.selectProductPage();
     productPage.findProduct("Sleeveless Dress");
     productPage.isProductVisible("Sleeveless Dress");
-
-    // //assertion
-    // cy.get(".product-image-wrapper").should("be.visible");
-    // cy.get(".product-image-wrapper").should("contain", "Sleeveless Dress");
   });
 });

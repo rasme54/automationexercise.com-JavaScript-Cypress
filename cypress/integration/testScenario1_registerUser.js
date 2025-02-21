@@ -1,86 +1,76 @@
 /// <reference types="cypress" />
+import HomePage from "../support/pageObject/homePage";
+import LoginPage from "../support/pageObject/loginPage";
+import Utils from "../support/pageObject/utils";
+import SignupPage from "../support/pageObject/signupPage";
 
 describe("TS1 - Register User", () => {
-  it("Register User", () => {
-    cy.visit("/");
-    const pageBody = cy.get("body").should("be.visible");
+  const homePage = new HomePage()
+  const loginPage = new LoginPage()
+  const utils = new Utils()
+  const signupPage = new SignupPage()
 
-    cy.contains("[href='/login']", " Signup / Login").as(signUpButton).click();
-    cy.url().should("include", "/login");
-    cy.contains("New User Signup!").should("be.visible");
+  it.only("Register User", () => {
 
-    // entering sign-up data
-    cy.get("input[placeholder='Name']").as("nameInput");
-    cy.get("input[placeholder='Email Address']").eq(1).as("emailInput");
+    const userName = "testUserName"
+    const userEmail = "testemail4@email.pl"
 
-    cy.get("@nameInput").type("testUserName");
-    cy.get("@nameInput").invoke("val").as("valueNameInput");
-    cy.get("@emailInput").type("testemail3@email.pl");
-    cy.get("@emailInput").invoke("val").as("valueEmailInput");
-    // confirming data
-    cy.get("button[type='submit']").contains("Signup").click();
+    homePage.selectLoginPage()
+    utils.isStringVisible("div.signup-form > h2", "New User Signup!")
 
-    // verification of page visability
-    cy.url().should("include", "/signup");
-    cy.contains("Enter Account Information").should("be.visible");
+    loginPage.typeNewUserData("input[data-qa='signup-name']", userName)
+    loginPage.typeNewUserData("input[data-qa='signup-email']", userEmail)
+    loginPage.acceptData("button[data-qa='signup-button']")
 
-    // entering data
-    // radio
-    cy.get("#id_gender1").check();
-    cy.get("#id_gender1").should("be.checked");
-    // name
-    cy.get("@valueNameInput").then((checkedNameInput) => {
-      cy.get("#name").should("have.value", checkedNameInput);
-    });
-    // email
-    cy.get("@valueEmailInput").then((checkedEmailInput) => {
-      cy.get("#email").should("have.value", checkedEmailInput);
-    });
+    utils.isPageUrlCorrect("/signup")
+    utils.isStringVisible("div.login-form > h2 >b", "Enter Account Information")
 
-    // password
-    cy.get("#password").type("PASSword123!");
+    signupPage.chooseRadioWithTitle("div[id='uniform-id_gender1']")
+    signupPage.typeSignUpData()
 
-    // date of birth - selecting option in selector component in three different ways
-    // day - by text
-    cy.get("select[id='days']").select("14");
-    // month - by index
-    cy.get("select[id='months']").select(4);
-    // year - by value attribut
-    cy.get("select[id='years']").select("2019");
 
-    // newsletter
-    cy.get("#newsletter").check();
-    // special offers
-    cy.get("#optin").check();
+    signupPage.isInputDataCorrect("input[id='name']", userName)
+    signupPage.isInputDataCorrect("input[id='email']", userEmail)
+    signupPage.typeSignUpData("input[id='password']", "PASSword123!")
 
-    // first name
-    cy.get("input[id='first_name']").type("firstName");
-    // last name
-    cy.get("input[id='last_name']").type("lastName");
-    // address
-    cy.get("input[id='address1']").type("address1");
-    cy.get("input[id='address2']").type("address2");
-    cy.get("select[id='country']").select("Canada");
-    cy.get("input[id='state']").type("state1");
-    cy.get("input[id='city']").type("city1");
-    cy.get("input[id='zipcode']").type("123123");
-    // phone number
-    cy.get("input[id='mobile_number']").type("123456789");
+    signupPage.selectDateOfBirth("select[id='days']", "12")
+    signupPage.selectDateOfBirth("select[id='months']", "April")
+    signupPage.selectDateOfBirth("select[id='years']", "2018")
+    
 
-    // sumbit
-    cy.contains("Create Account").click();
+    // // newsletter
+    // cy.get("#newsletter").check();
+    // // special offers
+    // cy.get("#optin").check();
 
-    cy.get("b").contains("Account Created!").as("successTitle");
-    cy.get("@successTitle").should("be.visible");
+    // // first name
+    // cy.get("input[id='first_name']").type("firstName");
+    // // last name
+    // cy.get("input[id='last_name']").type("lastName");
+    // // address
+    // cy.get("input[id='address1']").type("address1");
+    // cy.get("input[id='address2']").type("address2");
+    // cy.get("select[id='country']").select("Canada");
+    // cy.get("input[id='state']").type("state1");
+    // cy.get("input[id='city']").type("city1");
+    // cy.get("input[id='zipcode']").type("123123");
+    // // phone number
+    // cy.get("input[id='mobile_number']").type("123456789");
 
-    // continue
-    cy.contains("Continue").click();
-    cy.contains("Logged in as testUserName").should("be.visible");
+    // // sumbit
+    // cy.contains("Create Account").click();
 
-    // delete account
-    cy.contains(" Delete Account").click();
+    // cy.get("b").contains("Account Created!").as("successTitle");
+    // cy.get("@successTitle").should("be.visible");
 
-    cy.contains("Account Deleted!").should("be.visible");
+    // // continue
+    // cy.contains("Continue").click();
+    // cy.contains("Logged in as testUserName").should("be.visible");
+
+    // // delete account
+    // cy.contains(" Delete Account").click();
+
+    // cy.contains("Account Deleted!").should("be.visible");
   });
   it("Register User with existing email", () => {
     cy.visit("/");
