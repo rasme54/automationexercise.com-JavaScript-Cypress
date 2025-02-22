@@ -1,9 +1,11 @@
 /// <reference types="cypress" />
+import ActionOnPage from "../support/pageObject/actionOnPage";
 import ContactUsPage from "../support/pageObject/contactUsPage";
 import HomePage from "../support/pageObject/homePage";
 import Utils from "../support/pageObject/utils";
 
 describe("TS2 - ContactUsForm", () => {
+  const actionOnPage = new ActionOnPage();
   const contactUsPage = new ContactUsPage();
   const homePage = new HomePage();
   const utils = new Utils();
@@ -17,30 +19,22 @@ describe("TS2 - ContactUsForm", () => {
     homePage.selectContactUsPage();
     utils.isStringVisible("div.contact-form > h2", "Get In Touch");
 
-    cy.get("div[class='form-group col-md-6']").eq(0).as("nameInput");
-    contactUsPage.typeInputData("@nameInput", userName);
-
-    cy.get("div[class='form-group col-md-6']").eq(1).as("emailInput");
-    contactUsPage.typeInputData("@emailInput", userEmail);
-
-    cy.get("div[class='form-group col-md-12']").eq(0).as("userSubject");
-    contactUsPage.typeInputData("@userSubject", userSubject);
-
-    cy.get("div[class='form-group col-md-12']").eq(1).as("messageInput");
-    contactUsPage.typeInputData("@messageInput", userMessage);
-
-    //upload-file part
+    actionOnPage.typeInputValue("input[data-qa='name']", userName);
+    actionOnPage.typeInputValue("input[data-qa='email']", userEmail);
+    actionOnPage.typeInputValue("input[data-qa='subject']", userSubject);
+    actionOnPage.typeInputValue("textarea[data-qa='message']", userMessage);
     contactUsPage.uploadFile(
       "input[name='upload_file']",
+      "input[class='form-control'][name='upload_file']",
       "../fixtures/test.jpg",
+      "test.jpg",
     );
-    cy.get("div[class='form-group col-md-12']").eq(2).should("exist");
 
-    cy.get('input[type="file"]').then(($input) => {
-      expect($input[0].files[0].name).to.eq("test.jpg");
-    });
+    actionOnPage.clickButton("input[data-qa='submit-button']");
 
-    //submit
-    cy.get("input[class='form-control'][name='upload_file']").click();
+    utils.isStringVisible(
+      "div[class='status alert alert-success']",
+      "Success! Your details have been submitted successfully.",
+    );
   });
 });
