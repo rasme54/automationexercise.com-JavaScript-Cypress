@@ -1,6 +1,12 @@
 class HomePage {
   checkIsUserLoggedIn(selektor, userName) {
-    cy.get(selektor).should("contain.text", " Logged in as ${userName}");
+    cy.get(selektor).should("contain.text", " Logged in as '${userName}'");
+  }
+  selectContactUsPage() {
+    cy.visit("/");
+    cy.get("a[href='/contact_us']").as("LoginPageButton").click();
+    cy.url().should("include", "contact_us");
+    cy.get("body").should("be.visible");
   }
   selectLoginPage() {
     cy.visit("/");

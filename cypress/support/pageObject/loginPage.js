@@ -1,11 +1,8 @@
 class LoginPage {
-  typeInputData(selector, data) {
-    cy.get(selector).type(data);
-    cy.get(selector).should("have.value", data);
-  }
-  logIn(emialInput, passwordInput, userEmail, userPassword) {
+  logIn(selector, emialInput, passwordInput, userEmail, userPassword) {
     cy.get(emialInput).type(userEmail);
     cy.get(passwordInput).type(userPassword);
+    cy.get(selector).click();
   }
 }
 
