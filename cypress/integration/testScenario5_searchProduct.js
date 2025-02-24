@@ -1,14 +1,14 @@
 /// <reference types="cypress" />
 import HomePage from "../support/pageObject/homePage";
-import ProductPage from "../support/pageObject/productsPage";
+import ProductsPage from "../support/pageObject/productsPage";
 
 describe("TS5 - SearchProduct", () => {
   const homePage = new HomePage();
-  const productPage = new ProductPage();
+  const productsPage = new ProductsPage();
 
-  it("SearchProduct Page", () => {
+  it("Search Product", () => {
     homePage.selectProductPage();
-    productPage.findProduct("Sleeveless Dress");
-    productPage.isProductVisible("Sleeveless Dress");
+    productsPage.findProduct("Sleeveless Dress");
+    productsPage.isProductSearched("Sleeveless Dress");
   });
 });

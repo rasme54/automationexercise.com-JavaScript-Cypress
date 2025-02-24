@@ -14,19 +14,19 @@ describe("TS1 - Register User", () => {
     homePage.selectLoginPage();
   });
 
-  it("Register User", () => {
+  it("Correct Register User", () => {
     const userName = "testUserName";
     const userEmail = "testemail9@email.pl";
     const userPassword = "PASSword123!";
 
-    utils.isStringVisible("div.signup-form > h2", "New User Signup!");
+    utils.isStringContains("div.signup-form > h2", "New User Signup!");
 
     actionOnPage.typeInputValue("input[data-qa='signup-name']", userName);
     actionOnPage.typeInputValue("input[data-qa='signup-email']", userEmail);
     actionOnPage.clickButton("button[data-qa='signup-button']");
 
     utils.isPageUrlCorrect("/signup");
-    utils.isStringVisible(
+    utils.isStringContains(
       "div.login-form > h2 >b",
       "Enter Account Information",
     );
@@ -54,16 +54,17 @@ describe("TS1 - Register User", () => {
 
     utils.isPageUrlCorrect("/account_created");
     cy.get("div.col-sm-9.col-sm-offset-1 > h2 > b").as("sectionTitle");
-    utils.isStringVisible("@sectionTitle", "Account Created!");
+    utils.isStringContains("@sectionTitle", "Account Created!");
 
     actionOnPage.clickButton("a[data-qa='continue-button']");
     cy.get("a > i.fa.fa-user").parent().as("aTagWithString");
     utils.isUserLogged("@aTagWithString", "a > b", " Logged in as ", userName);
 
     actionOnPage.clickButton("a[href='/delete_account']");
-    utils.isStringVisible("@sectionTitle", "Account Deleted!");
+    utils.isStringContains("@sectionTitle", "Account Deleted!");
   });
-  it("Register User with existing email", () => {
+
+  it("Incorrect Register User - existing email", () => {
     const userName = "testUserName";
 
     actionOnPage.typeInputValue("input[data-qa='signup-name']", userName);
@@ -73,7 +74,7 @@ describe("TS1 - Register User", () => {
     );
     actionOnPage.clickButton("button[data-qa='signup-button']");
 
-    utils.isStringVisible(
+    utils.isStringContains(
       "form[action='/signup'] > p",
       "Email Address already exist!",
     );

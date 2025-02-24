@@ -14,7 +14,7 @@ describe("TS2 - LogInLogOut", () => {
     homePage.selectLoginPage();
   });
 
-  it("Log In - Positive Case", () => {
+  it("Login User with correct email and password", () => {
     const userEmail = "testemail@email.pl";
     const userPassword = "PASSword123!";
     const userName = "testUserName";
@@ -33,7 +33,7 @@ describe("TS2 - LogInLogOut", () => {
     utils.isUserLogged("@aTagWithString", "a > b", " Logged in as ", userName);
   });
 
-  it("Log in - Negative Case", () => {
+  it("Login User with incorrect email and password", () => {
     const userEmail = "negativetestemail@email.pl";
     const userPassword = "PASSword123!";
 
@@ -46,13 +46,13 @@ describe("TS2 - LogInLogOut", () => {
       userEmail,
       userPassword,
     );
-    utils.isStringVisible(
+    utils.isStringContains(
       "form[action='/login'] > p",
       "Your email or password is incorrect!",
     );
   });
 
-  it.only("Log out", () => {
+  it.only("Logout User", () => {
     const userEmail = "testemail@email.pl";
     const userPassword = "PASSword123!";
 

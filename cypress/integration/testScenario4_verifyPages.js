@@ -1,35 +1,47 @@
 /// <reference types="cypress" />
+import ActionOnPage from "../support/pageObject/actionOnPage";
+import HomePage from "../support/pageObject/homePage";
+import Utils from "../support/pageObject/utils";
+import ProductsPage from "../support/pageObject/productsPage";
 
 describe("TS4 - VerifyPages", () => {
-  it("TestCase Page", () => {
-    // navigate and check visability of the website
-    cy.visit("/");
-    cy.get("body").should("be.visible");
+  const actionOnPage = new ActionOnPage();
+  const homePage = new HomePage();
+  const utils = new Utils();
+  const productsPage = new ProductsPage();
 
-    cy.contains(" Test Cases").click();
-    cy.url().should("include", "/test_cases");
+  it("Verify Test Cases Page", () => {
+    homePage.selectTestCasesPage();
   });
-  it("AllProducts/ViewProduct Page", () => {
-    cy.visit("/");
-    cy.get("body").should("be.visible");
 
-    cy.contains(" Products").click();
-    cy.url().should("include", "/products");
-    cy.get("body").should("be.visible");
-    cy.contains("View Product").eq(0).click();
+  it("Verify All Products and product detail page", () => {
+    homePage.selectProductPage();
 
-    // Verify that detail detail is visible: product name, category, price, availability, condition, brand
-    // product name
-    cy.get(".product-information > h2").should("be.visible");
-    // category
-    cy.get(".product-information > p").eq(0).should("be.visible");
-    // price
-    cy.get("span").contains("Rs. 500").should("be.visible");
-    // availability
-    cy.get(".product-information > p").eq(1).should("be.visible");
-    // condition
-    cy.get(".product-information > p").eq(2).should("be.visible");
-    // brand
-    cy.get(".product-information > p").eq(3).should("be.visible");
+    cy.get("div[class='features_items']").as("listOfProducts");
+    utils.isElementVisible("@listOfProducts");
+    productsPage.selectProductFromList("1");
+    actionOnPage.clickButton('a[href="/product_details/1');
+    utils.isPageUrlCorrect("/product_details/1");
+
+    productsPage.isProductDetailVisible(
+      ".product-information > h2",
+      "productName",
+    );
+    cy.get(".product-information > p").eq(0).as("productCategorySelector");
+    productsPage.isProductDetailVisible(
+      "@productCategorySelector",
+      "categoryName",
+    );
+    cy.get("span").contains("Rs. 500").as("priceSelector");
+    productsPage.isProductDetailVisible("@priceSelector", "price");
+    cy.get(".product-information > p").eq(1).as("productAvailabilitySelector");
+    productsPage.isProductDetailVisible(
+      "@productAvailabilitySelector",
+      "availability",
+    );
+    cy.get(".product-information > p").eq(2).as("conditionSelector");
+    productsPage.isProductDetailVisible("@conditionSelector", "condition");
+    cy.get(".product-information > p").eq(3).as("brandSelector");
+    productsPage.isProductDetailVisible("@brandSelector", "brand");
   });
 });

@@ -11,6 +11,9 @@ class ActionOnPage {
     cy.get(selector).check();
     cy.get(selector).should("be.checked");
   }
+  scrollToElement(selector) {
+    cy.get(selector).trigger("scrollIntoView");
+  }
   selectFormDropdown(selektor, dateValueString) {
     cy.get(selektor).select(dateValueString);
     cy.get(selektor).should("have.value", dateValueString);

@@ -1,35 +1,33 @@
 /// <reference types="cypress" />
+import ActionOnPage from "../support/pageObject/actionOnPage";
+import HomePage from "../support/pageObject/homePage";
+import Utils from "../support/pageObject/utils";
 
 describe("TS6 - VerifySubscription", () => {
-  it("Subscription in home page", () => {
-    cy.visit("/");
-    cy.get("body").should("be.visible");
-    // scrolling to footer
-    cy.get(".footer-widget").trigger("scrollIntoView");
-    // verify SUBSCRIPTION title
-    cy.get(".single-widget > h2").should("be.visible");
-    //typing email
-    cy.get("#susbscribe_email").type("testemail@test.pl");
-    cy.get("#subscribe").click();
-    //subscription verify
-    cy.get("div[class='alert-success alert']").should(
-      "contain",
+  const actionOnPage = new ActionOnPage();
+  const homePage = new HomePage();
+  const utils = new Utils();
+
+  it("Verify Subscription in home page", () => {
+    utils.visitHomePage();
+    actionOnPage.scrollToElement(".footer-widget");
+    utils.isElementVisible(".single-widget > h2");
+    actionOnPage.typeInputValue("#susbscribe_email", "testemail@test.pl");
+    actionOnPage.clickButton("#subscribe");
+    utils.isStringContains(
+      "div[class='alert-success alert']",
       "You have been successfully subscribed!",
     );
   });
+
   it("Subscription in cart page", () => {
-    cy.visit("/");
-    cy.get("body").should("be.visible");
-    cy.get("a[href='/view_cart']").eq(0).click;
-    // scrolling to footer
-    cy.get(".footer-widget").trigger("scrollIntoView");
-    cy.get(".single-widget > h2").should("be.visible");
-    //typing email
-    cy.get("#susbscribe_email").type("testemail@test.pl");
-    cy.get("#subscribe").click();
-    //subscription verify
-    cy.get("div[class='alert-success alert']").should(
-      "contain",
+    homePage.selectCartPage();
+    actionOnPage.scrollToElement(".footer-widget");
+    utils.isElementVisible(".single-widget > h2");
+    actionOnPage.typeInputValue("#susbscribe_email", "testemail@test.pl");
+    actionOnPage.clickButton("#subscribe");
+    utils.isStringContains(
+      "div[class='alert-success alert']",
       "You have been successfully subscribed!",
     );
   });

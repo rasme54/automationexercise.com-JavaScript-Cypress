@@ -10,14 +10,14 @@ describe("TS2 - ContactUsForm", () => {
   const homePage = new HomePage();
   const utils = new Utils();
 
-  it("Filling contactUsForm", () => {
+  it("Contact Us Form", () => {
     const userName = "testUserName";
     const userEmail = "testemail9@email.pl";
     const userSubject = "testSubject";
     const userMessage = "testMessage";
 
     homePage.selectContactUsPage();
-    utils.isStringVisible("div.contact-form > h2", "Get In Touch");
+    utils.isStringContains("div.contact-form > h2", "Get In Touch");
 
     actionOnPage.typeInputValue("input[data-qa='name']", userName);
     actionOnPage.typeInputValue("input[data-qa='email']", userEmail);
@@ -32,7 +32,7 @@ describe("TS2 - ContactUsForm", () => {
 
     actionOnPage.clickButton("input[data-qa='submit-button']");
 
-    utils.isStringVisible(
+    utils.isStringContains(
       "div[class='status alert alert-success']",
       "Success! Your details have been submitted successfully.",
     );
