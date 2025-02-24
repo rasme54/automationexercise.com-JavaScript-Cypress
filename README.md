@@ -10,6 +10,7 @@ The goal of the project is to create automated tests for the **automationexercis
 - Cypress --v9.5.1
   - "cypress-real-events" v1.14.0
   - "cypress-file-upload" v5.0.8
+  - "prettier" v3.5.1
 - Node.js -- v20.11.1
 
 ### Setup:
@@ -17,19 +18,10 @@ The goal of the project is to create automated tests for the **automationexercis
 To run this project, make sure you have **Node.js installed**, and then:
 
 1.  Clone repository to your computer.
-2.  Open your IDE and go to the main project folder by using the command in the terminal:
-    <br>`cd automationexercise.com`
-3.  Install Cypress in the appropriate version by using the command in the terminal:
-    <br>`npm install cypress@9.5.1 --save-dev`
-4.  Make sure that you have installed necessary libraries, your **package.json** file should contains:
-    <br><a><img src="https://i.ibb.co/VWRs4j0x/dependencies.jpg" alt="dependencies" border="0"></a><br>
-5.  Make sure your **commands.js** file contains library references:
-    <br><a><img src="https://i.ibb.co/DfZSHXpf/dependencies2.jpg" alt="dependencies2" border="0"></a><br>
-6.  If you cannot find dependencies for any library, use the command:
-    <br>`npm install --save-dev "cypress-file-upload"`
-    <br>or
-    <br>`npm install --save-dev "cypress-real-events"`
-    <br>and **check package.json again**
-7.  If you used any of the commands from point 6, **add a reference to the commands.js** file manually ("import" commands from ponit 5)
-8.  In project's main folder use:
+2.  Go to the main project folder.
+3.  Install dependencies with a command: 
+	```npm install <dependecy>@version --save-dev```
+4.  In project's main folder use:
     <br>`npx cypress open`
+    <br>or script:
+    <br>```npm run open```
