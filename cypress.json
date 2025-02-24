@@ -1,5 +1,5 @@
 {
-  "baseUrl": "http://automationexercise.com",
+  "baseUrl": "https://automationexercise.com",
   "includeShadowDom": true,
   "chromeWebSecurity": true,
   "viewPortHeight": 1080,
