@@ -1,7 +1,10 @@
 # Node.js dependencies
 node_modules/
 
+
 # Cypress artefakty i logi
+cypress/integration/sampleTest.js
+cypress/support/pageObject/sampleClass.js
 cypress/screenshots/
 cypress/videos/
 cypress/downloads/

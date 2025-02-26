@@ -34,5 +34,9 @@ describe("TS7 - addingProductToCart", () => {
 
     homePage.selectCartPage();
     cartPage.isNumberOfElementsEqualTo("tbody > tr", 2);
+
+    //cy.get("tbody > tr").each(())
+
+    //cartPage.verifyProductDetail("@listOfElements", "500", "400")
   });
 });

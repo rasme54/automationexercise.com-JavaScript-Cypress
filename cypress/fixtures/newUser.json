@@ -1,0 +1,18 @@
+{
+  "genderId": "1",
+  "userName": "testUserName",
+  "userEmail": "testemail10@email.pl",
+  "userPassword": "PASSword123!",
+  "day": "13",
+  "month": "7",
+  "year": "2013",
+  "firstName": "firstName",
+  "lastName": "lastName",
+  "addressOne": "address1",
+  "addressTwo": "address2",
+  "country": "Canada",
+  "state": "state",
+  "city": "city",
+  "zipCode": "12345",
+  "mobileNumber": "123456789"
+}

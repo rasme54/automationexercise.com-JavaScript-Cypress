@@ -1,9 +1,4 @@
 class ProductsPage {
-  isNumberOfElementsEqualTo(selector, numberOfElements) {
-    cy.get(selector).then((elements) => {
-      expect(elements).to.have.length(numberOfElements);
-    });
-  }
   hoverAndAddToCart(productNumber) {
     cy.get(".single-products").eq(productNumber).realHover().wait(500);
     cy.get("div.overlay-content > a.btn.btn-default.add-to-cart")
@@ -16,9 +11,6 @@ class ProductsPage {
     cy.get("button[id='submit_search']").as("searchButton");
     cy.get("@searchButton").click();
   }
-  hoverOverProduct(numberOfProduct) {
-    cy.get(".product-image-wrapper").eq(numberOfProduct).realHover();
-  }
   isProductDetailVisible(selctor, productDetail) {
     cy.log(productDetail);
     cy.get(selctor).should("be.visible");
@@ -27,8 +19,11 @@ class ProductsPage {
     cy.get("div[class='product-image-wrapper']").as("productTile");
     cy.get("@productTile").should("contain", productName);
   }
+  increaseQuantity(amountOfQuantity) {
+    cy.get("input[id='quantity']").clear().type(amountOfQuantity);
+  }
   selectProductFromList(numberOfProduct) {
-    cy.get(`a[href="/product_details/${numberOfProduct}"]`);
+    cy.get(`a[href="/product_details/${numberOfProduct}"]`).click();
   }
 }
 
