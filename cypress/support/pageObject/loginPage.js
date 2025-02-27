@@ -1,8 +1,8 @@
 class LoginPage {
-  logIn(buttonSelector, emialInput, passwordInput, userEmail, userPassword) {
-    cy.get(emialInput).type(userEmail);
-    cy.get(passwordInput).type(userPassword);
-    cy.get(buttonSelector).click();
+  logIn(userEmail, userPassword) {
+    cy.get("input[data-qa='login-email']").type(userEmail);
+    cy.get("input[data-qa='login-password']").type(userPassword);
+    cy.get("button[data-qa='login-button']").click();
   }
 }
 

@@ -18,43 +18,19 @@ describe("TS2 - LogInLogOut", () => {
   });
 
   it("Login User with correct email and password", function () {
-    cy.get("input[data-qa='login-email']").as("emailInput");
-    cy.get("input[data-qa='login-password']").as("passwordInput");
-    loginPage.logIn(
-      "button[data-qa='login-button']",
-      "@emailInput",
-      "@passwordInput",
-      this.loginData.correctUserEmail,
-      this.loginData.userPassword,
-    );
+    loginPage.logIn(this.loginData.correctUserEmail, this.loginData.userPassword);
     cy.get("a > i.fa.fa-user").parent().as("aTagWithString");
-    loginPage.isUserLogged("@aTagWithString", "a > b", " Logged in as ", this.loginData.userName);
+    utils.isUserLogged("@aTagWithString", "a > b", " Logged in as ", this.loginData.userName);
   });
 
   it("Login User with incorrect email and password", function () {
-    cy.get("input[data-qa='login-email']").as("emailInput");
-    cy.get("input[data-qa='login-password']").as("passwordInput");
-    loginPage.logIn(
-      "button[data-qa='login-button']",
-      "@emailInput",
-      "@passwordInput",
-      this.loginData.incorrectUserEmail,
-      this.loginData.userPassword,
-    );
-    loginPage.isStringContains("form[action='/login'] > p", "Your email or password is incorrect!");
+    loginPage.logIn(this.loginData.incorrectUserEmail, this.loginData.userPassword);
+    utils.isStringContains("form[action='/login'] > p", "Your email or password is incorrect!");
   });
 
   it("Logout User", function () {
-    cy.get("input[data-qa='login-email']").as("emailInput");
-    cy.get("input[data-qa='login-password']").as("passwordInput");
-    loginPage.logIn(
-      "button[data-qa='login-button']",
-      "@emailInput",
-      "@passwordInput",
-      this.loginData.correctUserEmail,
-      this.loginData.userPassword,
-    );
-    loginPage.clickButton("a[href='/logout");
-    loginPage.isPageUrlCorrect("/login");
+    loginPage.logIn(this.loginData.correctUserEmail, this.loginData.userPassword);
+    actionOnPage.clickButton("a[href='/logout");
+    utils.isPageUrlCorrect("/login");
   });
 });
