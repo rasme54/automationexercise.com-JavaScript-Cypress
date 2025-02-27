@@ -12,7 +12,7 @@ describe("TS9 - placeOrder", () => {
   const utils = new Utils();
   const productPage = new ProductsPage();
 
-  it("Place Order: Register while Checkout", () => {
+  it("Place Order: Register while Checkout", function () {
     cy.fixture("loginData").then((data) => {
       const productNumber = 4;
 

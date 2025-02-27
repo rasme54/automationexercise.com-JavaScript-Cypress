@@ -1,4 +1,6 @@
-class SignupPage {
+import ActionOnPage from "./actionOnPage";
+
+class SignupPage extends ActionOnPage {
   isInputDataCorrect(selector, valueToCheck) {
     cy.get(selector).should("have.value", valueToCheck);
   }

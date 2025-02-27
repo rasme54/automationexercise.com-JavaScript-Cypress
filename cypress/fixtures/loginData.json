@@ -1,5 +1,6 @@
 {
-  "existingEmail": "testemail@email.pl",
+  "correctUserEmail": "testemail@email.pl",
+  "incorrectUserEmail": "testemailfalse@email.pl",
   "userName": "testUserName",
-  "userEmail": "testemail10@email.pl"
+  "userPassword": "PASSword123!"
 }

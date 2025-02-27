@@ -10,62 +10,59 @@ describe("TS2 - LogInLogOut", () => {
   const loginPage = new LoginPage();
   const utils = new Utils();
 
-  beforeEach(() => {
+  beforeEach(function () {
     homePage.selectLoginPage();
+    cy.fixture("loginData").then((data) => {
+      this.loginData = data;
+    });
   });
 
-  it("Login User with correct email and password", () => {
-    const userEmail = "testemail@email.pl";
-    const userPassword = "PASSword123!";
-    const userName = "testUserName";
-
+  it("Login User with correct email and password", function () {
     cy.get("input[data-qa='login-email']").as("emailInput");
     cy.get("input[data-qa='login-password']").as("passwordInput");
     loginPage.logIn(
       "button[data-qa='login-button']",
       "@emailInput",
       "@passwordInput",
-      userEmail,
-      userPassword,
+      this.loginData.correctUserEmail,
+      this.loginData.userPassword,
     );
-
     cy.get("a > i.fa.fa-user").parent().as("aTagWithString");
-    utils.isUserLogged("@aTagWithString", "a > b", " Logged in as ", userName);
+    loginPage.isUserLogged(
+      "@aTagWithString",
+      "a > b",
+      " Logged in as ",
+      this.loginData.userName,
+    );
   });
 
-  it("Login User with incorrect email and password", () => {
-    const userEmail = "negativetestemail@email.pl";
-    const userPassword = "PASSword123!";
-
+  it("Login User with incorrect email and password", function () {
     cy.get("input[data-qa='login-email']").as("emailInput");
     cy.get("input[data-qa='login-password']").as("passwordInput");
     loginPage.logIn(
       "button[data-qa='login-button']",
       "@emailInput",
       "@passwordInput",
-      userEmail,
-      userPassword,
+      this.loginData.incorrectUserEmail,
+      this.loginData.userPassword,
     );
-    utils.isStringContains(
+    loginPage.isStringContains(
       "form[action='/login'] > p",
       "Your email or password is incorrect!",
     );
   });
 
-  it.only("Logout User", () => {
-    const userEmail = "testemail@email.pl";
-    const userPassword = "PASSword123!";
-
+  it("Logout User", function () {
     cy.get("input[data-qa='login-email']").as("emailInput");
     cy.get("input[data-qa='login-password']").as("passwordInput");
     loginPage.logIn(
       "button[data-qa='login-button']",
       "@emailInput",
       "@passwordInput",
-      userEmail,
-      userPassword,
+      this.loginData.correctUserEmail,
+      this.loginData.userPassword,
     );
-    actionOnPage.clickButton("a[href='/logout");
-    utils.isPageUrlCorrect("/login");
+    loginPage.clickButton("a[href='/logout");
+    loginPage.isPageUrlCorrect("/login");
   });
 });

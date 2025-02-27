@@ -1,4 +1,6 @@
-class ProductsPage {
+import ActionOnPage from "./actionOnPage";
+
+class ProductsPage extends ActionOnPage {
   hoverAndAddToCart(productNumber) {
     cy.get(".single-products").eq(productNumber).realHover().wait(500);
     cy.get("div.overlay-content > a.btn.btn-default.add-to-cart")

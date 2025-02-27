@@ -1,13 +1,15 @@
 /// <reference types="cypress" />
-import ActionOnPage from "../support/pageObject/actionOnPage";
+import AccountCreatedPage from "../support/pageObject/accountCreatedPage";
+import DeleteAccountPage from "../support/pageObject/deleteAccountPage";
 import HomePage from "../support/pageObject/homePage";
-import Utils from "../support/pageObject/utils";
+import LoginPage from "../support/pageObject/loginPage";
 import SignupPage from "../support/pageObject/signupPage";
 
 describe("TS1 - Register User", () => {
-  const actionOnPage = new ActionOnPage();
+  const accountCreatedPage = new AccountCreatedPage();
+  const deleteAccountPage = new DeleteAccountPage();
   const homePage = new HomePage();
-  const utils = new Utils();
+  const loginPage = new LoginPage();
   const signupPage = new SignupPage();
 
   beforeEach(() => {
@@ -16,56 +18,48 @@ describe("TS1 - Register User", () => {
 
   it("Correct Register User", () => {
     cy.fixture("loginData").then((data) => {
-      utils.isStringContains("div.signup-form > h2", "New User Signup!");
+      loginPage.isStringContains("div.signup-form > h2", "New User Signup!");
+      loginPage.typeInputValue("input[data-qa='signup-name']", data.userName);
+      loginPage.typeInputValue("input[data-qa='signup-email']", data.userEmail);
+      loginPage.clickButton("button[data-qa='signup-button']");
 
-      actionOnPage.typeInputValue(
-        "input[data-qa='signup-name']",
-        data.userName,
-      );
-      actionOnPage.typeInputValue(
-        "input[data-qa='signup-email']",
-        data.userEmail,
-      );
-      actionOnPage.clickButton("button[data-qa='signup-button']");
-
-      utils.isPageUrlCorrect("/signup");
-      utils.isStringContains(
+      signupPage.isPageUrlCorrect("/signup");
+      signupPage.isStringContains(
         "div.login-form > h2 >b",
         "Enter Account Information",
       );
       cy.fillSignUpForm();
-      actionOnPage.clickButton("button[data-qa='create-account']");
-      utils.isPageUrlCorrect("/account_created");
+      signupPage.clickButton("button[data-qa='create-account']");
+      accountCreatedPage.isPageUrlCorrect("/account_created");
       cy.get("div.col-sm-9.col-sm-offset-1 > h2 > b").as("sectionTitle");
-      utils.isStringContains("@sectionTitle", "Account Created!");
-
-      actionOnPage.clickButton("a[data-qa='continue-button']");
+      accountCreatedPage.isStringContains("@sectionTitle", "Account Created!");
+      accountCreatedPage.clickButton("a[data-qa='continue-button']");
       cy.get("a > i.fa.fa-user").parent().as("aTagWithString");
-      utils.isUserLogged(
+      homePage.isUserLogged(
         "@aTagWithString",
         "a > b",
         " Logged in as ",
         data.userName,
       );
-
-      actionOnPage.clickButton("a[href='/delete_account']");
-      utils.isStringContains("@sectionTitle", "Account Deleted!");
+      homePage.clickButton("a[href='/delete_account']");
+      deleteAccountPage.isStringContains("@sectionTitle", "Account Deleted!");
     });
   });
 
   it("Incorrect Register User - existing email", () => {
-    const userName = "testUserName";
+    cy.fixture("loginData").then((data) => {
+      loginPage.isStringContains("div.signup-form > h2", "New User Signup!");
+      loginPage.typeInputValue("input[data-qa='signup-name']", data.userName);
+      loginPage.typeInputValue(
+        "input[data-qa='signup-email']",
+        data.existingEmail,
+      );
+      loginPage.clickButton("button[data-qa='signup-button']");
 
-    actionOnPage.typeInputValue("input[data-qa='signup-name']", userName);
-    actionOnPage.typeInputValue(
-      "input[data-qa='signup-email']",
-      "testemail@email.pl",
-    );
-    actionOnPage.clickButton("button[data-qa='signup-button']");
-
-    utils.isStringContains(
-      "form[action='/signup'] > p",
-      "Email Address already exist!",
-    );
+      loginPage.isStringContains(
+        "form[action='/signup'] > p",
+        "Email Address already exist!",
+      );
+    });
   });
 });
