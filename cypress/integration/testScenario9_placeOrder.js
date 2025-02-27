@@ -23,26 +23,15 @@ describe("TS9 - placeOrder", () => {
       cartPage.proceedToCheckout();
       cy.contains("p.text-center > a", "Register / Login").as("regLogButton");
       actionOnPage.clickButton("@regLogButton");
-      actionOnPage.typeInputValue(
-        "input[data-qa='signup-name']",
-        data.userName,
-      );
-      actionOnPage.typeInputValue(
-        "input[data-qa='signup-email']",
-        data.userEmail,
-      );
+      actionOnPage.typeInputValue("input[data-qa='signup-name']", data.userName);
+      actionOnPage.typeInputValue("input[data-qa='signup-email']", data.userEmail);
       actionOnPage.clickButton("button[data-qa='signup-button']");
       cy.fillSignUpForm();
       actionOnPage.clickButton("button[data-qa='create-account']");
       utils.isPageUrlCorrect("/account_created");
       actionOnPage.clickButton("a[data-qa='continue-button']");
       cy.get("a > i.fa.fa-user").parent().as("aTagWithString");
-      utils.isUserLogged(
-        "@aTagWithString",
-        "a > b",
-        " Logged in as ",
-        data.userName,
-      );
+      utils.isUserLogged("@aTagWithString", "a > b", " Logged in as ", data.userName);
       homePage.selectCartPage();
       cartPage.proceedToCheckout();
 

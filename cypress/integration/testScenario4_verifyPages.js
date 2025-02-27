@@ -23,22 +23,13 @@ describe("TS4 - VerifyPages", () => {
     actionOnPage.clickButton('a[href="/product_details/1');
     utils.isPageUrlCorrect("/product_details/1");
 
-    productsPage.isProductDetailVisible(
-      ".product-information > h2",
-      "productName",
-    );
+    productsPage.isProductDetailVisible(".product-information > h2", "productName");
     cy.get(".product-information > p").eq(0).as("productCategorySelector");
-    productsPage.isProductDetailVisible(
-      "@productCategorySelector",
-      "categoryName",
-    );
+    productsPage.isProductDetailVisible("@productCategorySelector", "categoryName");
     cy.get("span").contains("Rs. 500").as("priceSelector");
     productsPage.isProductDetailVisible("@priceSelector", "price");
     cy.get(".product-information > p").eq(1).as("productAvailabilitySelector");
-    productsPage.isProductDetailVisible(
-      "@productAvailabilitySelector",
-      "availability",
-    );
+    productsPage.isProductDetailVisible("@productAvailabilitySelector", "availability");
     cy.get(".product-information > p").eq(2).as("conditionSelector");
     productsPage.isProductDetailVisible("@conditionSelector", "condition");
     cy.get(".product-information > p").eq(3).as("brandSelector");

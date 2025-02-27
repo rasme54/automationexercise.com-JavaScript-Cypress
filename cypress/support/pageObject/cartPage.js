@@ -1,6 +1,4 @@
-import ActionOnPage from "./actionOnPage";
-
-class CartPage extends ActionOnPage {
+class CartPage {
   createListOfElements(selector) {
     cy.get(selector).then(($elements) => {
       const listOfElements = [...$elements];

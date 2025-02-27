@@ -28,12 +28,7 @@ describe("TS2 - LogInLogOut", () => {
       this.loginData.userPassword,
     );
     cy.get("a > i.fa.fa-user").parent().as("aTagWithString");
-    loginPage.isUserLogged(
-      "@aTagWithString",
-      "a > b",
-      " Logged in as ",
-      this.loginData.userName,
-    );
+    loginPage.isUserLogged("@aTagWithString", "a > b", " Logged in as ", this.loginData.userName);
   });
 
   it("Login User with incorrect email and password", function () {
@@ -46,10 +41,7 @@ describe("TS2 - LogInLogOut", () => {
       this.loginData.incorrectUserEmail,
       this.loginData.userPassword,
     );
-    loginPage.isStringContains(
-      "form[action='/login'] > p",
-      "Your email or password is incorrect!",
-    );
+    loginPage.isStringContains("form[action='/login'] > p", "Your email or password is incorrect!");
   });
 
   it("Logout User", function () {

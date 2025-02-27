@@ -1,6 +1,4 @@
-import ActionOnPage from "./actionOnPage";
-
-class ContactUsPage extends ActionOnPage {
+class ContactUsPage {
   uploadFile(selector, buttonSelector, fileLocation, fileName) {
     cy.get(selector).attachFile(fileLocation);
     cy.get(selector).then(($input) => {

@@ -1,6 +1,4 @@
-import Utils from "./utils";
-
-class ActionOnPage extends Utils {
+class ActionOnPage {
   chooseRadio(radio) {
     cy.get(radio).click();
     //cy.get(radio).should("be.checked");

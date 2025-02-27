@@ -14,10 +14,7 @@ describe("TS6 - VerifySubscription", () => {
     utils.isElementVisible(".single-widget > h2");
     actionOnPage.typeInputValue("#susbscribe_email", "testemail@test.pl");
     actionOnPage.clickButton("#subscribe");
-    utils.isStringContains(
-      "div[class='alert-success alert']",
-      "You have been successfully subscribed!",
-    );
+    utils.isStringContains("div[class='alert-success alert']", "You have been successfully subscribed!");
   });
 
   it("Subscription in cart page", () => {
@@ -26,9 +23,6 @@ describe("TS6 - VerifySubscription", () => {
     utils.isElementVisible(".single-widget > h2");
     actionOnPage.typeInputValue("#susbscribe_email", "testemail@test.pl");
     actionOnPage.clickButton("#subscribe");
-    utils.isStringContains(
-      "div[class='alert-success alert']",
-      "You have been successfully subscribed!",
-    );
+    utils.isStringContains("div[class='alert-success alert']", "You have been successfully subscribed!");
   });
 });

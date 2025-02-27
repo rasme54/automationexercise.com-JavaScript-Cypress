@@ -1,6 +1,4 @@
-import ActionOnPage from "./actionOnPage";
-
-class HomePage extends ActionOnPage {
+class HomePage {
   checkIsUserLoggedIn(selektor, userName) {
     cy.get(selektor).should("contain.text", " Logged in as '${userName}'");
   }
