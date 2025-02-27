@@ -10,28 +10,21 @@ describe("TS2 - ContactUsForm", () => {
   const homePage = new HomePage();
   const utils = new Utils();
 
-  it("Contact Us Form", () => {
-    const userName = "testUserName";
-    const userEmail = "testemail9@email.pl";
-    const userSubject = "testSubject";
-    const userMessage = "testMessage";
+  beforeEach(function () {
+    cy.fixture("contactForm").then(function (data) {
+      this.formData = data;
+    });
+  });
 
+  it("Contact Us Form", function () {
     homePage.selectContactUsPage();
     utils.isStringContains("div.contact-form > h2", "Get In Touch");
-
-    actionOnPage.typeInputValue("input[data-qa='name']", userName);
-    actionOnPage.typeInputValue("input[data-qa='email']", userEmail);
-    actionOnPage.typeInputValue("input[data-qa='subject']", userSubject);
-    actionOnPage.typeInputValue("textarea[data-qa='message']", userMessage);
-    contactUsPage.uploadFile(
-      "input[name='upload_file']",
-      "input[class='form-control'][name='upload_file']",
-      "../fixtures/test.jpg",
-      "test.jpg",
-    );
-
+    actionOnPage.typeInputValue("input[data-qa='name']", this.formData.userName);
+    actionOnPage.typeInputValue("input[data-qa='email']", this.formData.userEmail);
+    actionOnPage.typeInputValue("input[data-qa='subject']", this.formData.userSubject);
+    actionOnPage.typeInputValue("textarea[data-qa='message']", this.formData.userMessage);
+    contactUsPage.uploadFile("../fixtures/test.jpg", "test.jpg");
     actionOnPage.clickButton("input[data-qa='submit-button']");
-
     utils.isStringContains(
       "div[class='status alert alert-success']",
       "Success! Your details have been submitted successfully.",
