@@ -25,9 +25,6 @@ describe("TS2 - ContactUsForm", () => {
     actionOnPage.typeInputValue("textarea[data-qa='message']", this.formData.userMessage);
     contactUsPage.uploadFile("../fixtures/test.jpg", "test.jpg");
     actionOnPage.clickButton("input[data-qa='submit-button']");
-    utils.isStringContains(
-      "div[class='status alert alert-success']",
-      "Success! Your details have been submitted successfully.",
-    );
+    utils.isStringContains("div[class='status alert alert-success']", "Success! Your details have been submitted successfully.");
   });
 });

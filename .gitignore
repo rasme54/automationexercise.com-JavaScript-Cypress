@@ -5,6 +5,7 @@ node_modules/
 # Cypress artefakty i logi
 cypress/integration/sampleTest.js
 cypress/support/pageObject/sampleClass.js
+cypress/fixtures/sample.json
 cypress/screenshots/
 cypress/videos/
 cypress/downloads/

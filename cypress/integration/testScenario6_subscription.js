@@ -8,20 +8,26 @@ describe("TS6 - VerifySubscription", () => {
   const homePage = new HomePage();
   const utils = new Utils();
 
-  it("Verify Subscription in home page", () => {
+  beforeEach(function () {
+    cy.fixture("loginData").then(function (data) {
+      this.loginData = data;
+    });
+  });
+
+  it("Verify subscription in home page", function () {
     utils.visitHomePage();
     actionOnPage.scrollToElement(".footer-widget");
     utils.isElementVisible(".single-widget > h2");
-    actionOnPage.typeInputValue("#susbscribe_email", "testemail@test.pl");
+    actionOnPage.typeInputValue("#susbscribe_email", this.loginData.correctUserEmail);
     actionOnPage.clickButton("#subscribe");
     utils.isStringContains("div[class='alert-success alert']", "You have been successfully subscribed!");
   });
 
-  it("Subscription in cart page", () => {
+  it("Verify subscription in cart page", function () {
     homePage.selectCartPage();
     actionOnPage.scrollToElement(".footer-widget");
     utils.isElementVisible(".single-widget > h2");
-    actionOnPage.typeInputValue("#susbscribe_email", "testemail@test.pl");
+    actionOnPage.typeInputValue("#susbscribe_email", this.loginData.correctUserEmail);
     actionOnPage.clickButton("#subscribe");
     utils.isStringContains("div[class='alert-success alert']", "You have been successfully subscribed!");
   });

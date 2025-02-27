@@ -20,9 +20,7 @@ describe("TS4 - VerifyPages", () => {
     cy.get("div[class='features_items']").as("listOfProducts");
     utils.isElementVisible("@listOfProducts");
     productsPage.selectProductFromList("1");
-    actionOnPage.clickButton('a[href="/product_details/1');
     utils.isPageUrlCorrect("/product_details/1");
-
     productsPage.isProductDetailVisible(".product-information > h2", "productName");
     cy.get(".product-information > p").eq(0).as("productCategorySelector");
     productsPage.isProductDetailVisible("@productCategorySelector", "categoryName");
