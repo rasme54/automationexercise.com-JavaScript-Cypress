@@ -2,16 +2,22 @@ import "cypress-file-upload";
 import "cypress-real-events/support";
 import ActionOnPage from "../support/pageObject/actionOnPage";
 import Utils from "../support/pageObject/utils";
+import ProductsPage from "./pageObject/productsPage";
 import SignupPage from "../support/pageObject/signupPage";
 
-Cypress.Commands.add("login", () => {
-  cy.visit("www.google.com");
-});
-Cypress.Commands.add("fillSignUpForm", () => {
-  const actionOnPage = new ActionOnPage();
-  const utils = new Utils();
-  const signupPage = new SignupPage();
+const actionOnPage = new ActionOnPage();
+const utils = new Utils();
+const productsPage = new ProductsPage();
+const signupPage = new SignupPage();
 
+Cypress.Commands.add("addToCard", (productIndex) => {
+  utils.isPageUrlCorrect("/products");
+  productsPage.hoverAndAddToCart(productIndex);
+  utils.isStringContains("p[class='text-center']", "Your product has been added to cart.");
+  actionOnPage.clickButton('button[class="btn btn-success close-modal btn-block"]');
+});
+
+Cypress.Commands.add("fillSignUpForm", () => {
   cy.fixture("newUser").then((data) => {
     utils.isPageUrlCorrect("/signup");
     actionOnPage.chooseRadio(`div[id='uniform-id_gender${data.genderId}']`);

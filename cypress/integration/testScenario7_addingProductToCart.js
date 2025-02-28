@@ -12,21 +12,16 @@ describe("TS7 - addingProductToCart", () => {
   const utils = new Utils();
   const productPage = new ProductsPage();
 
-  it("Add Products to Cart", () => {
+  it("Add Two Products to Cart", () => {
     homePage.selectProductPage();
     productPage.hoverAndAddToCart(0);
     utils.isStringContains("p[class='text-center']", "Your product has been added to cart.");
     actionOnPage.clickButton('button[class="btn btn-success close-modal btn-block"]');
-
     productPage.hoverAndAddToCart(1);
     utils.isStringContains("p[class='text-center']", "Your product has been added to cart.");
     actionOnPage.clickButton('button[class="btn btn-success close-modal btn-block"]');
-
     homePage.selectCartPage();
     cartPage.isNumberOfElementsEqualTo("tbody > tr", 2);
-
-    //cy.get("tbody > tr").each(())
-
-    //cartPage.verifyProductDetail("@listOfElements", "500", "400")
+    cartPage.checkDetailsOfProduct("Rs. 400", "Rs. 500");
   });
 });

@@ -17,7 +17,6 @@ describe("TS8 - verifyProductDetail", () => {
     const quantityValue = 4;
 
     homePage.selectProductPage();
-
     productPage.selectProductFromList(numberOfProduct);
     utils.isPageUrlCorrect(`/product_details/${numberOfProduct}`);
     productPage.increaseQuantity(quantityValue);
