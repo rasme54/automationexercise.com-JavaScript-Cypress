@@ -88,7 +88,7 @@ describe("TS9 - placeOrder", () => {
     cy.deleteUser();
   });
 
-  it.only("16. Place Order: Login before Checkout", function () {
+  it("16. Place Order: Login before Checkout", function () {
     const productNumber = 9;
     homePage.selectLoginPage();
     loginPage.logIn(this.loginData);

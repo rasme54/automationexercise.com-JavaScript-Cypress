@@ -18,7 +18,7 @@ describe("TS1 - Register User", () => {
     });
   });
 
-  it.only("Correct Register User", function () {
+  it("Correct Register User", function () {
     utils.isStringContains("div.signup-form > h2", "New User Signup!");
     actionOnPage.typeInputValue("input[data-qa='signup-name']", this.newUser.userName);
     actionOnPage.typeInputValue("input[data-qa='signup-email']", this.newUser.userEmail);
@@ -32,7 +32,7 @@ describe("TS1 - Register User", () => {
     utils.isStringContains("@sectionTitle", "Account Created!");
     actionOnPage.clickButton("a[data-qa='continue-button']");
     utils.isUserLogged(this.newUser);
-    //cy.deleteUser();
+    cy.deleteUser();
   });
 
   it("Incorrect Register User - existing email", function () {
