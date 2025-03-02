@@ -1,10 +1,4 @@
 class CartPage {
-  createListOfElements(selector) {
-    cy.get(selector).then(($elements) => {
-      const listOfElements = [...$elements];
-      return cy.wrap(listOfElements);
-    });
-  }
   isNumberOfElementsEqualTo(selector, numberOfElements) {
     cy.get(selector).then((elements) => {
       expect(elements).to.have.length(numberOfElements);

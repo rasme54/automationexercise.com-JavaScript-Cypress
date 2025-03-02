@@ -1,7 +1,12 @@
 class LoginPage {
-  logIn(userEmail, userPassword) {
-    cy.get("input[data-qa='login-email']").type(userEmail);
-    cy.get("input[data-qa='login-password']").type(userPassword);
+  logIn(loginData) {
+    cy.get("input[data-qa='login-email']").type(loginData.correctUserEmail);
+    cy.get("input[data-qa='login-password']").type(loginData.userPassword);
+    cy.get("button[data-qa='login-button']").click();
+  }
+  incorrectlogIn(loginData) {
+    cy.get("input[data-qa='login-email']").type(loginData.incorrectUserEmail);
+    cy.get("input[data-qa='login-password']").type(loginData.userPassword);
     cy.get("button[data-qa='login-button']").click();
   }
 }

@@ -1,7 +1,4 @@
 class HomePage {
-  checkIsUserLoggedIn(selektor, userName) {
-    cy.get(selektor).should("contain.text", " Logged in as '${userName}'");
-  }
   selectCartPage() {
     cy.visit("/");
     cy.get("a[href='/view_cart']").eq(0).click();

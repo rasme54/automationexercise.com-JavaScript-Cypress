@@ -18,18 +18,18 @@ describe("TS2 - LogInLogOut", () => {
   });
 
   it("Login User with correct email and password", function () {
-    loginPage.logIn(this.loginData.correctUserEmail, this.loginData.userPassword);
-    cy.get("a > i.fa.fa-user").parent().as("aTagWithString");
-    utils.isUserLogged("@aTagWithString", "a > b", " Logged in as ", this.loginData.userName);
+    loginPage.logIn(this.loginData);
+    utils.isUserLogged(this.loginData);
   });
 
   it("Login User with incorrect email and password", function () {
-    loginPage.logIn(this.loginData.incorrectUserEmail, this.loginData.userPassword);
+    loginPage.incorrectlogIn(this.loginData);
     utils.isStringContains("form[action='/login'] > p", "Your email or password is incorrect!");
   });
 
   it("Logout User", function () {
-    loginPage.logIn(this.loginData.correctUserEmail, this.loginData.userPassword);
+    loginPage.logIn(this.loginData);
+    utils.isUserLogged(this.loginData);
     actionOnPage.clickButton("a[href='/logout");
     utils.isPageUrlCorrect("/login");
   });

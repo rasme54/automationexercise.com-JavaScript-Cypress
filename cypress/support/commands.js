@@ -10,11 +10,16 @@ const utils = new Utils();
 const productsPage = new ProductsPage();
 const signupPage = new SignupPage();
 
-Cypress.Commands.add("addToCard", (productIndex) => {
+Cypress.Commands.add("addToCart", (productIndex) => {
   utils.isPageUrlCorrect("/products");
   productsPage.hoverAndAddToCart(productIndex);
   utils.isStringContains("p[class='text-center']", "Your product has been added to cart.");
   actionOnPage.clickButton('button[class="btn btn-success close-modal btn-block"]');
+});
+
+Cypress.Commands.add("deleteUser", () => {
+  actionOnPage.clickButton("a[href='/delete_account']");
+  utils.isStringContains("div.col-sm-9.col-sm-offset-1 > h2 > b", "Account Deleted!");
 });
 
 Cypress.Commands.add("fillSignUpForm", () => {

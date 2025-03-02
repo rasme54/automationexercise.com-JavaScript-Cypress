@@ -2,11 +2,12 @@ class Utils {
   isElementVisible(selector) {
     cy.get(selector).should("be.visible");
   }
-  isUserLogged(firstSelector, secondSelector, expectedString, userName) {
-    cy.get(firstSelector, { timeout: 10000 }).should("be.visible");
-    cy.get(secondSelector, { timeout: 10000 }).should("be.visible");
-    cy.get(firstSelector).should("contain", expectedString);
-    cy.get(secondSelector).should("have.text", userName);
+  isUserLogged(loginData) {
+    cy.get("a > i.fa.fa-user").parent().as("aTagWithString");
+    cy.get("@aTagWithString").should("be.visible");
+    cy.get("a > b").should("be.visible");
+    cy.get("@aTagWithString").should("contain", " Logged in as ");
+    cy.get("a > b").should("have.text", loginData.userName);
   }
   isStringContains(selector, stringToCheck) {
     cy.get(selector).should("contain", stringToCheck);

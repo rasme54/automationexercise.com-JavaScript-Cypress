@@ -31,10 +31,8 @@ describe("TS1 - Register User", () => {
     cy.get("div.col-sm-9.col-sm-offset-1 > h2 > b").as("sectionTitle");
     utils.isStringContains("@sectionTitle", "Account Created!");
     actionOnPage.clickButton("a[data-qa='continue-button']");
-    cy.get("a > i.fa.fa-user").parent().as("aTagWithString");
-    utils.isUserLogged("@aTagWithString", "a > b", " Logged in as ", this.newUser.userName);
-    actionOnPage.clickButton("a[href='/delete_account']");
-    utils.isStringContains("@sectionTitle", "Account Deleted!");
+    utils.isUserLogged(this.newUser);
+    cy.deleteUser();
   });
 
   it("Incorrect Register User - existing email", function () {
