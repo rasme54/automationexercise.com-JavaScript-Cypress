@@ -5,6 +5,9 @@ class HomePage {
     cy.url().should("include", "/view_cart");
     cy.get("body").should("be.visible");
   }
+  selectCategory(selector, categoryName) {
+    cy.get(selector).contains(categoryName).click();
+  }
   selectContactUsPage() {
     cy.visit("/");
     cy.get("a[href='/contact_us']").click();

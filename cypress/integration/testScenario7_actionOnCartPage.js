@@ -12,8 +12,8 @@ describe("TS7 - addingProductToCart", () => {
   const utils = new Utils();
   const productPage = new ProductsPage();
 
-  const productNumberOne = 0;
-  const productNumberTwo = 1;
+  const productNumberOne = 0
+  const productNumberTwo = 1
 
   it("12. Add Two Products to Cart", () => {
     homePage.selectProductPage();
@@ -29,14 +29,12 @@ describe("TS7 - addingProductToCart", () => {
   });
   it("17. Remove Products from Cart", () => {
     homePage.selectProductPage();
-    cy.addToCart(productNumberOne);
-    cy.addToCart(productNumberTwo);
+    cy.addToCart(productNumberOne)
+    cy.addToCart(productNumberTwo)
     homePage.selectCartPage();
     cartPage.isNumberOfElementsEqualTo("tbody > tr", 2);
-    utils.isPageUrlCorrect("/view_cart");
-    cy.get("a[class='cart_quantity_delete']").eq(1).as("secondProduct");
-    actionOnPage.clickButton("@secondProduct");
-    // 7. Click 'X' button corresponding to particular product
-    // 8. Verify that product is removed from the cart
-  });
+    utils.isPageUrlCorrect("/view_cart"); 
+    cy.get("a[class='cart_quantity_delete']").eq(1).as("secondProduct")
+    actionOnPage.clickButton("@secondProduct")
+  })
 });

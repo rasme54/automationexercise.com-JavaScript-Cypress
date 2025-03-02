@@ -33,6 +33,7 @@ class CartPage {
         });
     });
   }
+  removeAllProductsFromCart
 }
 
 export default CartPage;
