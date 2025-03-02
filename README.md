@@ -1,4 +1,5 @@
 # Project: [automationexercise.com](https://github.com/rasme54/automationexercise.com/tree/master)
+[![Cypress Tests](https://img.shields.io/endpoint?url=https://dashboard.cypress.io/badge/detailed/ttoywa/main&style=flat&logo=cypress)](https://dashboard.cypress.io/projects/ttoywa/runs)
 
 <div align="left">
 	<code><img width="40" src="https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/javascript.png" alt="JavaScript" title="JavaScript"/></code>

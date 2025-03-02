@@ -4,7 +4,8 @@
   "main": "index.js",
   "scripts": {
     "prettier": "npx prettier --write .",
-    "open": "npx cypress open"
+    "open": "npx cypress open",
+    "all": "npx cypress run --record --key 37421cf6-ce4d-4056-a037-9bc40ea91e3e"
   },
   "author": "",
   "license": "ISC",

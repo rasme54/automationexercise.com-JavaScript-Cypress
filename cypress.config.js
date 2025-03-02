@@ -2,6 +2,7 @@ const { defineConfig } = require('cypress');
 
 module.exports = defineConfig({
   e2e: {
+    projectId: "ttoywa",
     baseUrl: 'https://automationexercise.com',
     includeShadowDom: true,
     chromeWebSecurity: true,
