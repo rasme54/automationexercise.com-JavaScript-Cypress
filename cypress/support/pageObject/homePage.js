@@ -1,4 +1,7 @@
 class HomePage {
+  selectBrand(brandName) {
+    cy.get(`a[href="/brand_products/${brandName}"]`).click();
+  }
   selectCartPage() {
     cy.visit("/");
     cy.get("a[href='/view_cart']").eq(0).click();
