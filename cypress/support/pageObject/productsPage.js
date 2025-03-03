@@ -1,7 +1,18 @@
 class ProductsPage {
-  hoverAndAddToCart(productNumber) {
-    cy.get(".single-products").eq(productNumber).realHover().wait(500);
-    cy.get("div.overlay-content > a.btn.btn-default.add-to-cart").eq(productNumber).click({ force: true });
+  addAllVisibleProductToCart() {
+    cy.get("div[class='product-image-wrapper']")
+      .its("length")
+      .then((count) => {
+        const elementCount = count;
+        for (let i = 0; i < elementCount; i++) {
+          cy.addToCart(i);
+        }
+      });
+  }
+  areProductsVisible(selector) {
+    cy.get(selector).then(($products) => {
+      expect($products).to.be.visible;
+    });
   }
   findProduct(productName) {
     cy.get("input[id='search_product']").as("searchBar");
@@ -15,8 +26,9 @@ class ProductsPage {
   }
   isProductSearched(productName) {
     cy.get("div[class='product-image-wrapper']").as("productTile");
-    cy.get("@productTile").should("contain", productName);
+    cy.get("@productTile").each("contain", productName);
   }
+
   increaseQuantity(amountOfQuantity) {
     cy.get("input[id='quantity']").clear().type(amountOfQuantity);
   }

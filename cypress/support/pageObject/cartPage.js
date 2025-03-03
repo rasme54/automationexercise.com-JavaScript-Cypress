@@ -1,4 +1,6 @@
-class CartPage {
+import ProductsPage from "./productsPage";
+
+class CartPage extends ProductsPage {
   isNumberOfElementsEqualTo(selector, numberOfElements) {
     cy.get(selector).then((elements) => {
       expect(elements).to.have.length(numberOfElements);

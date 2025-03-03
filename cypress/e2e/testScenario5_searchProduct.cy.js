@@ -1,10 +1,16 @@
 /// <reference types="cypress" />
+import ActionOnPage from "../support/pageObject/actionOnPage";
 import HomePage from "../support/pageObject/homePage";
+import LoginPage from "../support/pageObject/loginPage";
 import Utils from "../support/pageObject/utils";
 import ProductsPage from "../support/pageObject/productsPage";
+import CartPage from "../support/pageObject/cartPage";
 
 describe("TS5 - SearchProduct", () => {
+  const actionOnPage = new ActionOnPage();
+  const cartPage = new CartPage();
   const homePage = new HomePage();
+  const loginPage = new LoginPage();
   const utils = new Utils();
   const productsPage = new ProductsPage();
 
@@ -39,19 +45,21 @@ describe("TS5 - SearchProduct", () => {
     utils.isPageUrlCorrect(`/brand_products/${secondBrandName}`);
   });
 
-  //   it.only("20. Search Products and Verify Cart After Login", () => {
-  //     const productName = "dress";
+  it.only("20. Search Products and Verify Cart After Login", function () {
+    cy.fixture("loginData").then((data) => {
+      this.loginData = data;
+      const productName = "Tshirt";
 
-  //     homePage.selectProductPage()
-  //     productsPage.findProduct(productName)
-  //     productsPage.isProductSearched(productName)
-  // // 5. Enter product name in search input and click search button
-  // // 6. Verify 'SEARCHED PRODUCTS' is visible
-  // // 7. Verify all the products related to search are visible
-  // // 8. Add those products to cart
-  // // 9. Click 'Cart' button and verify that products are visible in cart
-  // // 10. Click 'Signup / Login' button and submit login details
-  // // 11. Again, go to Cart page
-  // // 12. Verify that those products are visible in cart after login as well
-  //   })
+      homePage.selectProductPage();
+      productsPage.findProduct(productName);
+      productsPage.areProductsVisible("div[class='product-image-wrapper']");
+      productsPage.addAllVisibleProductToCart();
+      homePage.selectCartPage();
+      cartPage.areProductsVisible("tbody > tr");
+      homePage.selectLoginPage();
+      loginPage.logIn(this.loginData);
+      homePage.selectCartPage();
+      cartPage.areProductsVisible("tbody > tr");
+    });
+  });
 });

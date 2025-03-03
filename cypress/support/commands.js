@@ -2,19 +2,17 @@ import "cypress-file-upload";
 import "cypress-real-events/support";
 import ActionOnPage from "../support/pageObject/actionOnPage";
 import Utils from "../support/pageObject/utils";
-import ProductsPage from "./pageObject/productsPage";
 import SignupPage from "../support/pageObject/signupPage";
 
 const actionOnPage = new ActionOnPage();
 const utils = new Utils();
-const productsPage = new ProductsPage();
 const signupPage = new SignupPage();
 
 Cypress.Commands.add("addToCart", (productIndex) => {
-  utils.isPageUrlCorrect("/products");
-  productsPage.hoverAndAddToCart(productIndex);
-  utils.isStringContains("p[class='text-center']", "Your product has been added to cart.");
-  actionOnPage.clickButton('button[class="btn btn-success close-modal btn-block"]');
+  cy.get(".single-products").eq(productIndex).realHover().wait(500);
+  cy.get("div.overlay-content > a.btn.btn-default.add-to-cart").eq(productIndex).click({ force: true });
+  cy.get("p[class='text-center']").should("contain", "Your product has been added to cart.");
+  cy.get("button[class='btn btn-success close-modal btn-block']").click();
 });
 
 Cypress.Commands.add("deleteUser", () => {
