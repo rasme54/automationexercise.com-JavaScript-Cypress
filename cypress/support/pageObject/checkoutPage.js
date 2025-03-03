@@ -1,5 +1,5 @@
 class CheckoutPage {
-  CheckProductDetails(newUser) {
+  checkProductDetails(newUser) {
     cy.get("div[class='col-xs-12 col-sm-6']").each(($el) => {
       cy.wrap($el)
         .find("li.address_firstname.address_lastname")

@@ -47,7 +47,7 @@ describe("TS9 - placeOrder", () => {
     utils.isUserLogged(this.newUser);
     homePage.selectCartPage();
     cartPage.proceedToCheckout();
-    checkoutPage.CheckProductDetails(this.newUser);
+    checkoutPage.checkProductDetails(this.newUser);
     actionOnPage.typeInputValue("div[id='ordermsg'] > textarea", "This is a test order");
     actionOnPage.clickButton("a[href='/payment']");
     utils.isPageUrlCorrect("/payment");
@@ -78,7 +78,7 @@ describe("TS9 - placeOrder", () => {
     cy.addToCart(productNumber);
     homePage.selectCartPage();
     cartPage.proceedToCheckout();
-    checkoutPage.CheckProductDetails(this.newUser);
+    checkoutPage.checkProductDetails(this.newUser);
     actionOnPage.typeInputValue("div[id='ordermsg'] > textarea", "This is a test order");
     actionOnPage.clickButton("a[href='/payment']");
     utils.isPageUrlCorrect("/payment");
@@ -97,7 +97,7 @@ describe("TS9 - placeOrder", () => {
     cy.addToCart(productNumber);
     homePage.selectCartPage();
     cartPage.proceedToCheckout();
-    checkoutPage.CheckProductDetails(this.newUser);
+    checkoutPage.checkProductDetails(this.newUser);
     actionOnPage.typeInputValue("div[id='ordermsg'] > textarea", "This is a test order");
     actionOnPage.clickButton("a[href='/payment']");
     utils.isPageUrlCorrect("/payment");

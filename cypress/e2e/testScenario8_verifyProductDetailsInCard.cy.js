@@ -1,16 +1,23 @@
 /// <reference types="cypress" />
 import ActionOnPage from "../support/pageObject/actionOnPage";
 import CartPage from "../support/pageObject/cartPage";
+import CheckoutPage from "../support/pageObject/checkoutPage";
 import HomePage from "../support/pageObject/homePage";
 import Utils from "../support/pageObject/utils";
 import ProductsPage from "../support/pageObject/productsPage";
+import PaymentPage from "../support/pageObject/paymentPage";
 
 describe("TS8 - actionsOnProducts", () => {
   const actionOnPage = new ActionOnPage();
   const cartPage = new CartPage();
+  const checkoutPage = new CheckoutPage();
   const homePage = new HomePage();
   const utils = new Utils();
   const productPage = new ProductsPage();
+  const paymentPage = new PaymentPage();
+
+  const productNumberOne = 0;
+  const productNumberTwo = 1;
 
   it("Verify Product quantity in Cart", () => {
     const numberOfProduct = 3;
@@ -24,7 +31,7 @@ describe("TS8 - actionsOnProducts", () => {
     actionOnPage.clickButton("p.text-center > a");
     cartPage.isProductDetailEqualTo("td.cart_quantity > button", quantityValue);
   });
-  it.only("21. Add review on product", function () {
+  it("21. Add review on product", function () {
     cy.fixture("loginData").then((data) => {
       this.loginData = data;
       homePage.selectProductPage();
@@ -32,6 +39,34 @@ describe("TS8 - actionsOnProducts", () => {
       utils.isStringContains("a[href='#reviews']", "Write Your Review");
       productPage.addReview(this.loginData);
       utils.isStringContains("div.alert.alert-success > span", "Thank you for your review.");
+    });
+  });
+  it.only("23. Verify address details in checkout page", function () {
+    cy.fixture("newUser").then((data) => {
+      this.newUser = data;
+      cy.fixture("paymentData").then((data) => {
+        this.paymentData = data;
+        homePage.selectLoginPage();
+        utils.isStringContains("div.signup-form > h2", "New User Signup!");
+        actionOnPage.typeInputValue("input[data-qa='signup-name']", this.newUser.userName);
+        actionOnPage.typeInputValue("input[data-qa='signup-email']", this.newUser.userEmail);
+        actionOnPage.clickButton("button[data-qa='signup-button']");
+        utils.isPageUrlCorrect("/signup");
+        utils.isStringContains("div.login-form > h2 >b", "Enter Account Information");
+        cy.fillSignUpForm();
+        actionOnPage.clickButton("button[data-qa='create-account']");
+        utils.isPageUrlCorrect("/account_created");
+        cy.get("div.col-sm-9.col-sm-offset-1 > h2 > b").as("sectionTitle");
+        utils.isStringContains("@sectionTitle", "Account Created!");
+        actionOnPage.clickButton("a[data-qa='continue-button']");
+        utils.isUserLogged(this.newUser);
+        cy.addToCart(productNumberOne);
+        cy.addToCart(productNumberTwo);
+        homePage.selectCartPage();
+        cartPage.proceedToCheckout();
+        checkoutPage.checkProductDetails(this.newUser);
+        cy.deleteUser();
+      });
     });
   });
 });
