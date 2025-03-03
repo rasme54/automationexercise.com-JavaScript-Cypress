@@ -15,6 +15,16 @@ Cypress.Commands.add("addToCart", (productIndex) => {
   cy.get("button[class='btn btn-success close-modal btn-block']").click();
 });
 
+Cypress.Commands.add("addRecomendedToCart", (productIndex) => {
+  productIndex = +1;
+  cy.get("div[class='recommended_items'] div[class='product-image-wrapper']")
+    .eq(productIndex)
+    .within(() => {
+      cy.get("a.btn.btn-default.add-to-cart").click({ force: true });
+    });
+  cy.get("a[href='/view_cart'] > u").click();
+});
+
 Cypress.Commands.add("deleteUser", () => {
   actionOnPage.clickButton("a[href='/delete_account']");
   utils.isStringContains("div.col-sm-9.col-sm-offset-1 > h2 > b", "Account Deleted!");

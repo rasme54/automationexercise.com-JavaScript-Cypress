@@ -32,4 +32,11 @@ describe("TS7 - addingProductToCart", () => {
     cy.get("a[class='cart_quantity_delete']").eq(1).as("secondProduct");
     actionOnPage.clickButton("@secondProduct");
   });
+  it.only("22. Add to cart from Recommended items", () => {
+    utils.visitHomePage();
+    actionOnPage.scrollToElement("div[class='recommended_items']");
+    utils.isElementVisible("div[class='recommended_items']");
+    cy.addRecomendedToCart(productNumberOne);
+    utils.isElementVisible("tbody > tr");
+  });
 });
