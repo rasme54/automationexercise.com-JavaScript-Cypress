@@ -5,7 +5,7 @@ import HomePage from "../support/pageObject/homePage";
 import Utils from "../support/pageObject/utils";
 import ProductsPage from "../support/pageObject/productsPage";
 
-describe("TS8 - verifyProductDetail", () => {
+describe("TS8 - actionsOnProducts", () => {
   const actionOnPage = new ActionOnPage();
   const cartPage = new CartPage();
   const homePage = new HomePage();
@@ -23,5 +23,15 @@ describe("TS8 - verifyProductDetail", () => {
     actionOnPage.clickButton("button[class='btn btn-default cart']");
     actionOnPage.clickButton("p.text-center > a");
     cartPage.isProductDetailEqualTo("td.cart_quantity > button", quantityValue);
+  });
+  it.only("21. Add review on product", function () {
+    cy.fixture("loginData").then((data) => {
+      this.loginData = data;
+      homePage.selectProductPage();
+      productPage.viewProduct(0);
+      utils.isStringContains("a[href='#reviews']", "Write Your Review");
+      productPage.addReview(this.loginData);
+      utils.isStringContains("div.alert.alert-success > span", "Thank you for your review.");
+    });
   });
 });

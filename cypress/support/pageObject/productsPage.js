@@ -9,6 +9,12 @@ class ProductsPage {
         }
       });
   }
+  addReview(loginData) {
+    cy.get("input[id='name']").type(loginData.userName);
+    cy.get("input[id='email']").type(loginData.correctUserEmail);
+    cy.get("textarea[id='review']").type("This is a test review");
+    cy.get("button[id='button-review']").click();
+  }
   areProductsVisible(selector) {
     cy.get(selector).then(($products) => {
       expect($products).to.be.visible;
@@ -34,6 +40,11 @@ class ProductsPage {
   }
   selectProductFromList(numberOfProduct) {
     cy.get(`a[href="/product_details/${numberOfProduct}"]`).click();
+  }
+  viewProduct(productIndex) {
+    //indexing products starts from "1" on the webside
+    productIndex = +1;
+    cy.get(`a[href='/product_details/${productIndex}']`).click();
   }
 }
 
