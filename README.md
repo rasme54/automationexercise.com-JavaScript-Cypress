@@ -17,6 +17,7 @@ The goal of the project is to create automated tests for the **automationexercis
 - Cypress --v10.11.0
   - "cypress-real-events" v1.14.0
   - "cypress-file-upload" v5.0.8
+  - "cypress-multi-reporters" v2.0.5
   - "prettier" v3.5.1
 - Node.js -- v20.11.1
 
