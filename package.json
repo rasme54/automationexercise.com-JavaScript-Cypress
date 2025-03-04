@@ -10,11 +10,11 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "cypress": "10.11.0",
-    "cypress-file-upload": "5.0.8",
-    "cypress-multi-reporters": "2.0.5",
-    "cypress-real-events": "1.14.0",
-    "prettier": "3.5.1"
+    "cypress": "^14.0.0",
+    "cypress-file-upload": "^5.0.8",
+    "cypress-multi-reporters": "^2.0.5",
+    "cypress-real-events": "^1.14.0",
+    "prettier": "^3.5.1"
   },
   "dependencies": {},
   "description": ""
