@@ -2,12 +2,10 @@
 
 [![Cypress Tests](https://img.shields.io/endpoint?url=https://dashboard.cypress.io/badge/detailed/ttoywa/master&style=flat&logo=cypress)](https://dashboard.cypress.io/projects/ttoywa/runs)
 
-<div  align="left">
 
-<code><img  width="40"  src="https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/javascript.png"  alt="JavaScript"  title="JavaScript"/></code>
-
-<code><img  width="40"  src="https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/cypress.png"  alt="Cypress"  title="Cypress"/></code>
-
+<div align="left">
+	<code><img width="50" src="https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/javascript.png" alt="JavaScript" title="JavaScript"/></code>
+	<code><img width="50" src="https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/cypress.png" alt="Cypress" title="Cypress"/></code>
 </div>
 
 ## Table of contents
@@ -171,3 +169,4 @@ To run this project, make sure you have **Node.js installed**, and then:
 ### Test Cases Description
 
 All test cases descriptions are available on [https://automationexercise.com/test_cases](https://automationexercise.com/test_cases).
+
