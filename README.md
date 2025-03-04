@@ -40,9 +40,11 @@ To run this project, make sure you have **Node.js installed**, and then:
 4.  In project's main folder use: <br>`npx cypress open` <br>or script: <br>`npm run open`
 
 ### Test Cases Organization
-TS1 - Register User
- - Test Case 1: Register User
- - Test Case 5: Register User with existing email
+<details>
+	<summary>TS1 - Register User</summary>
+	 <li>Test Case 1: Register User
+	 <li>Test Case 5: Register User with existing email</li>
+  </details>
  
 TS2 - LogInLogOut
  - Test Case 2: Login User with correct email and password
@@ -92,9 +94,5 @@ TS10 - WebsiteNavigation
  - Test Case 26: Verify Scroll Up without 'Arrow' button and Scroll Down functionality
 
 ### Test Cases Description
-#### Test Case 1: Register User
-<details> 
-	<summary>Kliknij, aby rozwinąć</summary> 
-	<p>To jest ukryta treść, która pojawi się po rozwinięciu.</p>
+All test cases descriptions are available on [https://automationexercise.com/test_cases](#https://automationexercise.com/test_cases).
 
-</details>
