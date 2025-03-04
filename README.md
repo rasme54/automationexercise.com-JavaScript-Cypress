@@ -42,57 +42,61 @@ To run this project, make sure you have **Node.js installed**, and then:
 ### Test Cases Organization
 <details>
 	<summary>TS1 - Register User</summary>
-	 <li>Test Case 1: Register User
+	 <li>Test Case 1: Register User</li>
 	 <li>Test Case 5: Register User with existing email</li>
   </details>
- 
-TS2 - LogInLogOut
- - Test Case 2: Login User with correct email and password
- - Test Case 3: Login User with incorrect email and password
- - Test Case 4: Logout User
- 
-TS3 - ContactUsForm
- - TestCase 6: Contact Us Form
-
-TS4 - VerifyPages
- - Test Case 7: Verify Test Cases Page
- - Test Case 8: Verify All Products and product detail page
- 
-TS5 - SearchProduct
- - Test Case 9: Search Product
- - Test Case 18: View Category Products
- - Test Case 19: View & Cart Brand Products
- - Test Case 20: Search Products and Verify Cart After Login
-
-TS6 - VerifySubscription
-
- - Test Case 10: Verify Subscription in home page
- - Test Case 11: Verify Subscription in Cart page
-
-TS7 - AddingProductToCart
-
- - Test Case 12: Add Products in Cart
- - Test Case 17: Remove Products From Cart
- - Test Case 22: Add to cart from Recommended items
-
-TS8 - actionsOnProducts
-
- - Test Case 13: Verify Product quantity in Cart
- - Test Case 21: Add review on product
- - Test Case 23: Verify address details in checkout page
-
-TS9 - PlaceOrder
-
- - Test Case 14: Place Order: Register while Checkout
- - Test Case 15: Place Order: Register before Checkout
- - Test Case 16: Place Order: Login before Checkout
- - Test Case 24: Download Invoice after purchase order
-
-TS10 - WebsiteNavigation
-
- - Test Case 25: Verify Scroll Up using 'Arrow' button and Scroll Down functionality
- - Test Case 26: Verify Scroll Up without 'Arrow' button and Scroll Down functionality
-
+  <details>
+	<summary>TS2 - LogInLogOut</summary>
+	 <li>Test Case 2: Login User with correct email and password</li>
+	 <li>Test Case 3: Login User with incorrect email and password</li>
+	 <li>Test Case 4: Logout User</li>
+  </details>
+  <details>
+	<summary>TS3 - ContactUsForm</summary>
+	 <li>TestCase 6: Contact Us Form</li>
+  </details>
+  <details>
+	<summary>TS4 - VerifyPages</summary>
+	 <li>Test Case 7: Verify Test Cases Page</li>
+	 <li>Test Case 8: Verify All Products and product detail page</li>
+  </details>
+  <details>
+	<summary>TS5 - SearchProduct</summary>
+	 <li>Test Case 9: Search Product</li>
+	 <li>Test Case 18: View Category Products</li>
+	 <li>Test Case 19: View & Cart Brand Products</li>
+	 <li>Test Case 20: Search Products and Verify Cart After Login</li>
+  </details>
+  <details>
+	<summary>TS6 - VerifySubscription</summary>
+	 <li>Test Case 10: Verify Subscription in home page</li>
+	 <li>Test Case 11: Verify Subscription in Cart page</li>
+  </details>
+  <details>
+	<summary>TS7 - AddingProductToCart</summary>
+	 <li>Test Case 12: Add Products in Cart</li>
+	 <li>Test Case 17: Remove Products From Cart</li>
+	 <li>Test Case 22: Add to cart from Recommended items</li>
+  </details>
+   <details>
+	<summary>TS8 - actionsOnProducts</summary>
+	 <li>Test Case 13: Verify Product quantity in Cart</li>
+	 <li>Test Case 21: Add review on product</li>
+	 <li>Test Case 23: Verify address details in checkout page</li>
+  </details>
+  <details>
+	<summary>TS9 - PlaceOrder</summary>
+	 <li>Test Case 14: Place Order: Register while Checkout</li>
+	 <li>Test Case 15: Place Order: Register before Checkout</li>
+	 <li>Test Case 16: Place Order: Login before Checkout</li>
+	 <li>Test Case 24: Download Invoice after purchase orde</li>
+  </details>
+  <details>
+	<summary>TS10 - WebsiteNavigation</summary>
+	 <li>Test Case 25: Verify Scroll Up using 'Arrow' button and Scroll Down functionality</li>
+	 <li>Test Case 26: Verify Scroll Up without 'Arrow' button and Scroll Down functionality</li>
+  </details>
+  
 ### Test Cases Description
 All test cases descriptions are available on [https://automationexercise.com/test_cases](#https://automationexercise.com/test_cases).
 
