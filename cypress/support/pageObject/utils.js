@@ -17,7 +17,7 @@ class Utils {
     cy.get("body").should("be.visible");
   }
   isWebsiteScrolledUp() {
-    cy.window().its('scrollY').should('equal', 0);
+    cy.window().its("scrollY").should("equal", 0);
   }
   visitHomePage() {
     cy.visit("/");

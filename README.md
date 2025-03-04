@@ -1,10 +1,6 @@
 # Project: [automationexercise.com](https://github.com/rasme54/automationexercise.com/tree/master)
 
-  
-
 [![Cypress Tests](https://img.shields.io/endpoint?url=https://dashboard.cypress.io/badge/detailed/ttoywa/master&style=flat&logo=cypress)](https://dashboard.cypress.io/projects/ttoywa/runs)
-
-  
 
 <div  align="left">
 
@@ -14,11 +10,7 @@
 
 </div>
 
-  
-
 ## Table of contents
-
-  
 
 - [Introduction](#Introduction)
 
@@ -30,19 +22,11 @@
 
 - [Test Cases Description](#Test-Cases-Description)
 
-  
-
 ### Introduction:
-
-  
 
 The goal of the project is to create automated tests for the **automationexercise.com** application using **Cypress 10.11.0**. The main objective is to gain practical experience in end-to-end testing by implementing documented test cases. In the future, I plan to work on separate branches within the **Git** repository, which will allow me to experiment easily and potentially update the written Cypress tests to newer versions.
 
-  
-
 ### Technologies:
-
-  
 
 - Javascript,
 
@@ -58,15 +42,9 @@ The goal of the project is to create automated tests for the **automationexercis
 
 - Node.js -- v20.11.1
 
-  
-
 ### Setup:
 
-  
-
 To run this project, make sure you have **Node.js installed**, and then:
-
-  
 
 1. Clone repository to your computer.
 
@@ -74,9 +52,7 @@ To run this project, make sure you have **Node.js installed**, and then:
 
 3. Install dependencies with a command: <br>`npm install`
 
-4. In project's main folder use: <br>`npx cypress open`  <br>or script: <br>`npm run open`
-
-  
+4. In project's main folder use: <br>`npx cypress open` <br>or script: <br>`npm run open`
 
 ### Test Cases Organization
 
@@ -195,4 +171,3 @@ To run this project, make sure you have **Node.js installed**, and then:
 ### Test Cases Description
 
 All test cases descriptions are available on [https://automationexercise.com/test_cases](https://automationexercise.com/test_cases).
-
