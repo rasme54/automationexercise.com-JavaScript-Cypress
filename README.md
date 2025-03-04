@@ -194,5 +194,5 @@ To run this project, make sure you have **Node.js installed**, and then:
 
 ### Test Cases Description
 
-All test cases descriptions are available on [https://automationexercise.com/test_cases](#https://automationexercise.com/test_cases).
+All test cases descriptions are available on [https://automationexercise.com/test_cases](https://automationexercise.com/test_cases).
 
