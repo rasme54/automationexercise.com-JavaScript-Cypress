@@ -36,7 +36,7 @@ To run this project, make sure you have **Node.js installed**, and then:
 
 1.  Clone repository to your computer.
 2.  Go to the main project folder.
-3.  Install dependencies with a command: <br>`npm install <dependecy>@version --save-dev`
+3.  Install dependencies with a command: <br>`npm install`
 4.  In project's main folder use: <br>`npx cypress open` <br>or script: <br>`npm run open`
 
 ### Test Cases Organization

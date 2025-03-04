@@ -16,6 +16,9 @@ class Utils {
     cy.url().should("include", partOfUrl);
     cy.get("body").should("be.visible");
   }
+  isWebsiteScrolledUp() {
+    cy.window().its('scrollY').should('equal', 0);
+  }
   visitHomePage() {
     cy.visit("/");
     cy.get("body").should("be.visible");

@@ -1,22 +1,19 @@
 /// <reference types="cypress" />
-import ActionOnPage from "../support/pageObject/actionOnPage";
 import HomePage from "../support/pageObject/homePage";
 import Utils from "../support/pageObject/utils";
 import ProductsPage from "../support/pageObject/productsPage";
 
 describe("TS4 - VerifyPages", () => {
-  const actionOnPage = new ActionOnPage();
   const homePage = new HomePage();
   const utils = new Utils();
   const productsPage = new ProductsPage();
 
-  it("Verify Test Cases Page", () => {
+  it("Test Case 7: Verify Test Cases Page", () => {
     homePage.selectTestCasesPage();
   });
 
-  it("Verify All Products and product detail page", () => {
+  it("Test Case 8: Verify All Products and product detail page", () => {
     homePage.selectProductPage();
-
     cy.get("div[class='features_items']").as("listOfProducts");
     utils.isElementVisible("@listOfProducts");
     productsPage.selectProductFromList("1");

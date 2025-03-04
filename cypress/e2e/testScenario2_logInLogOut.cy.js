@@ -17,17 +17,17 @@ describe("TS2 - LogInLogOut", () => {
     });
   });
 
-  it("Login User with correct email and password", function () {
+  it("Test Case 2: Login User with correct email and password", function () {
     loginPage.logIn(this.loginData);
     utils.isUserLogged(this.loginData);
   });
 
-  it("Login User with incorrect email and password", function () {
+  it("Test Case 3: Login User with incorrect email and password", function () {
     loginPage.incorrectlogIn(this.loginData);
     utils.isStringContains("form[action='/login'] > p", "Your email or password is incorrect!");
   });
 
-  it("Logout User", function () {
+  it("Test Case 4: Logout User", function () {
     loginPage.logIn(this.loginData);
     utils.isUserLogged(this.loginData);
     actionOnPage.clickButton("a[href='/logout");

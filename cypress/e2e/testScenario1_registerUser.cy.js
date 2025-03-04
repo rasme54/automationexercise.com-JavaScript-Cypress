@@ -18,7 +18,7 @@ describe("TS1 - Register User", () => {
     });
   });
 
-  it("Correct Register User", function () {
+  it("Test Case 1: Register User", function () {
     utils.isStringContains("div.signup-form > h2", "New User Signup!");
     actionOnPage.typeInputValue("input[data-qa='signup-name']", this.newUser.userName);
     actionOnPage.typeInputValue("input[data-qa='signup-email']", this.newUser.userEmail);
@@ -35,7 +35,7 @@ describe("TS1 - Register User", () => {
     cy.deleteUser();
   });
 
-  it("Incorrect Register User - existing email", function () {
+  it("Test Case 5: Register User with existing email", function () {
     utils.isStringContains("div.signup-form > h2", "New User Signup!");
     actionOnPage.typeInputValue("input[data-qa='signup-name']", this.loginData.userName);
     actionOnPage.typeInputValue("input[data-qa='signup-email']", this.loginData.correctUserEmail);

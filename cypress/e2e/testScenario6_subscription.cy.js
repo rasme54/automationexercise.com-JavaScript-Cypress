@@ -14,7 +14,7 @@ describe("TS6 - VerifySubscription", () => {
     });
   });
 
-  it("Verify subscription in home page", function () {
+  it("Test Case 10: Verify Subscription in home page", function () {
     utils.visitHomePage();
     actionOnPage.scrollToElement(".footer-widget");
     utils.isElementVisible(".single-widget > h2");
@@ -23,7 +23,7 @@ describe("TS6 - VerifySubscription", () => {
     utils.isStringContains("div[class='alert-success alert']", "You have been successfully subscribed!");
   });
 
-  it("Verify subscription in cart page", function () {
+  it("Test Case 11: Verify Subscription in Cart page", function () {
     homePage.selectCartPage();
     actionOnPage.scrollToElement(".footer-widget");
     utils.isElementVisible(".single-widget > h2");

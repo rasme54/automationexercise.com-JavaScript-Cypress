@@ -19,7 +19,7 @@ describe("TS8 - actionsOnProducts", () => {
   const productNumberOne = 0;
   const productNumberTwo = 1;
 
-  it("Verify Product quantity in Cart", () => {
+  it("Test Case 13: Verify Product quantity in Cart", () => {
     const numberOfProduct = 3;
     const quantityValue = 4;
 
@@ -31,7 +31,7 @@ describe("TS8 - actionsOnProducts", () => {
     actionOnPage.clickButton("p.text-center > a");
     cartPage.isProductDetailEqualTo("td.cart_quantity > button", quantityValue);
   });
-  it("21. Add review on product", function () {
+  it("Test Case 21: Add review on product", function () {
     cy.fixture("loginData").then((data) => {
       this.loginData = data;
       homePage.selectProductPage();
@@ -41,7 +41,7 @@ describe("TS8 - actionsOnProducts", () => {
       utils.isStringContains("div.alert.alert-success > span", "Thank you for your review.");
     });
   });
-  it.only("23. Verify address details in checkout page", function () {
+  it("Test Case 23: Verify address details in checkout page", function () {
     cy.fixture("newUser").then((data) => {
       this.newUser = data;
       cy.fixture("paymentData").then((data) => {

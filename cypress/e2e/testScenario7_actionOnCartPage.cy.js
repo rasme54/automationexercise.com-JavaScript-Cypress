@@ -13,7 +13,7 @@ describe("TS7 - addingProductToCart", () => {
   const productNumberOne = 0;
   const productNumberTwo = 1;
 
-  it("12. Add Two Products to Cart", () => {
+  it("Test Case 12: Add Products in Cart", () => {
     homePage.selectProductPage();
     utils.isPageUrlCorrect("/products");
     cy.addToCart(productNumberOne);
@@ -22,7 +22,7 @@ describe("TS7 - addingProductToCart", () => {
     cartPage.isNumberOfElementsEqualTo("tbody > tr", 2);
     cartPage.checkDetailsOfProduct("Rs. 400", "Rs. 500");
   });
-  it("17. Remove Products from Cart", () => {
+  it("Test Case 17: Remove Products From Cart", () => {
     homePage.selectProductPage();
     cy.addToCart(productNumberOne);
     cy.addToCart(productNumberTwo);
@@ -32,7 +32,7 @@ describe("TS7 - addingProductToCart", () => {
     cy.get("a[class='cart_quantity_delete']").eq(1).as("secondProduct");
     actionOnPage.clickButton("@secondProduct");
   });
-  it.only("22. Add to cart from Recommended items", () => {
+  it.only("Test Case 22: Add to cart from Recommended items", () => {
     utils.visitHomePage();
     actionOnPage.scrollToElement("div[class='recommended_items']");
     utils.isElementVisible("div[class='recommended_items']");

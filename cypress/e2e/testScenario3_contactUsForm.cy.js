@@ -4,7 +4,7 @@ import ContactUsPage from "../support/pageObject/contactUsPage";
 import HomePage from "../support/pageObject/homePage";
 import Utils from "../support/pageObject/utils";
 
-describe("TS2 - ContactUsForm", () => {
+describe("TS3 - ContactUsForm", () => {
   const actionOnPage = new ActionOnPage();
   const contactUsPage = new ContactUsPage();
   const homePage = new HomePage();
@@ -16,7 +16,7 @@ describe("TS2 - ContactUsForm", () => {
     });
   });
 
-  it("Contact Us Form", function () {
+  it("TestCase 6: Contact Us Form", function () {
     homePage.selectContactUsPage();
     utils.isStringContains("div.contact-form > h2", "Get In Touch");
     actionOnPage.typeInputValue("input[data-qa='name']", this.formData.userName);
