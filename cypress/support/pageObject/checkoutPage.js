@@ -38,5 +38,26 @@ class CheckoutPage {
         });
     });
   }
+  // downloadPriceToString() {
+  //   const numberOfElements = cy.get("td > p.cart_total_price").its("length")
+  //   cy.get("td > p.cart_total_price").eq(numberOfElements).invoke("text").as("price");
+
+  // }
+  downloadPriceToString() {
+    return cy
+      .get("td > p.cart_total_price")
+      .its("length")
+      .then((numberOfElements) => {
+        // Get the last element
+        return cy
+          .get("td > p.cart_total_price")
+          .eq(numberOfElements - 1)
+          .invoke("text")
+          .then((text) => {
+            // Remove the "Rs. " prefix
+            return text.replace("Rs. ", "");
+          });
+      });
+  }
 }
 export default CheckoutPage;
