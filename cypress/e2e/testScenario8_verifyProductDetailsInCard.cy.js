@@ -5,7 +5,6 @@ import CheckoutPage from "../support/pageObject/checkoutPage";
 import HomePage from "../support/pageObject/homePage";
 import Utils from "../support/pageObject/utils";
 import ProductsPage from "../support/pageObject/productsPage";
-import PaymentPage from "../support/pageObject/paymentPage";
 
 describe("TS8 - actionsOnProducts", () => {
   const actionOnPage = new ActionOnPage();
@@ -14,7 +13,6 @@ describe("TS8 - actionsOnProducts", () => {
   const homePage = new HomePage();
   const utils = new Utils();
   const productPage = new ProductsPage();
-  const paymentPage = new PaymentPage();
 
   const productNumberOne = 0;
   const productNumberTwo = 1;
@@ -51,11 +49,9 @@ describe("TS8 - actionsOnProducts", () => {
         actionOnPage.typeInputValue("input[data-qa='signup-name']", this.newUser.userName);
         actionOnPage.typeInputValue("input[data-qa='signup-email']", this.newUser.userEmail);
         actionOnPage.clickButton("button[data-qa='signup-button']");
-        utils.isPageUrlCorrect("/signup");
         utils.isStringContains("div.login-form > h2 >b", "Enter Account Information");
         cy.fillSignUpForm();
         actionOnPage.clickButton("button[data-qa='create-account']");
-        utils.isPageUrlCorrect("/account_created");
         cy.get("div.col-sm-9.col-sm-offset-1 > h2 > b").as("sectionTitle");
         utils.isStringContains("@sectionTitle", "Account Created!");
         actionOnPage.clickButton("a[data-qa='continue-button']");

@@ -43,7 +43,7 @@ describe("TS5 - SearchProduct", () => {
     utils.isPageUrlCorrect(`/brand_products/${secondBrandName}`);
   });
 
-  it.only("Test Case 20: Search Products and Verify Cart After Login", function () {
+  it("Test Case 20: Search Products and Verify Cart After Login", function () {
     cy.fixture("loginData").then((data) => {
       this.loginData = data;
       const productName = "Tshirt";

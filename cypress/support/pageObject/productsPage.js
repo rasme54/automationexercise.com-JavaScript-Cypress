@@ -32,7 +32,9 @@ class ProductsPage {
   }
   isProductSearched(productName) {
     cy.get("div[class='product-image-wrapper']").as("productTile");
-    cy.get("@productTile").each("contain", productName);
+    cy.get("@productTile").each(($product) => {
+      cy.wrap($product).should("contain.text", productName);
+    });
   }
 
   increaseQuantity(amountOfQuantity) {

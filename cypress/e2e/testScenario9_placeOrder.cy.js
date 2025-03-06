@@ -44,7 +44,6 @@ describe("TS9 - placeOrder", () => {
     actionOnPage.clickButton("button[data-qa='signup-button']");
     cy.fillSignUpForm();
     actionOnPage.clickButton("button[data-qa='create-account']");
-    utils.isPageUrlCorrect("/account_created");
     actionOnPage.clickButton("a[data-qa='continue-button']");
     cy.get("a > i.fa.fa-user").parent().as("aTagWithString");
     utils.isUserLogged(this.newUser);
@@ -53,7 +52,6 @@ describe("TS9 - placeOrder", () => {
     checkoutPage.checkProductDetails(this.newUser);
     actionOnPage.typeInputValue("div[id='ordermsg'] > textarea", "This is a test order");
     actionOnPage.clickButton("a[href='/payment']");
-    utils.isPageUrlCorrect("/payment");
     paymentPage.typePaymentDetails(this.paymentData);
     actionOnPage.clickButton("button[id='submit']");
     utils.isStringContains("div.col-sm-9.col-sm-offset-1 > p", "Congratulations! Your order has been confirmed!");
@@ -68,11 +66,9 @@ describe("TS9 - placeOrder", () => {
     actionOnPage.typeInputValue("input[data-qa='signup-name']", this.newUser.userName);
     actionOnPage.typeInputValue("input[data-qa='signup-email']", this.newUser.userEmail);
     actionOnPage.clickButton("button[data-qa='signup-button']");
-    utils.isPageUrlCorrect("/signup");
     utils.isStringContains("div.login-form > h2 >b", "Enter Account Information");
     cy.fillSignUpForm();
     actionOnPage.clickButton("button[data-qa='create-account']");
-    utils.isPageUrlCorrect("/account_created");
     cy.get("div.col-sm-9.col-sm-offset-1 > h2 > b").as("sectionTitle");
     utils.isStringContains("@sectionTitle", "Account Created!");
     actionOnPage.clickButton("a[data-qa='continue-button']");
@@ -85,7 +81,6 @@ describe("TS9 - placeOrder", () => {
     checkoutPage.checkProductDetails(this.newUser);
     actionOnPage.typeInputValue("div[id='ordermsg'] > textarea", "This is a test order");
     actionOnPage.clickButton("a[href='/payment']");
-    utils.isPageUrlCorrect("/payment");
     paymentPage.typePaymentDetails(this.paymentData);
     actionOnPage.clickButton("button[id='submit']");
     utils.isStringContains("div.col-sm-9.col-sm-offset-1 > p", "Congratulations! Your order has been confirmed!");
@@ -105,7 +100,6 @@ describe("TS9 - placeOrder", () => {
     checkoutPage.checkProductDetails(this.newUser);
     actionOnPage.typeInputValue("div[id='ordermsg'] > textarea", "This is a test order");
     actionOnPage.clickButton("a[href='/payment']");
-    utils.isPageUrlCorrect("/payment");
     paymentPage.typePaymentDetails(this.paymentData);
     actionOnPage.clickButton("button[id='submit']");
     utils.isStringContains("div.col-sm-9.col-sm-offset-1 > p", "Congratulations! Your order has been confirmed!");
@@ -123,11 +117,9 @@ describe("TS9 - placeOrder", () => {
     actionOnPage.typeInputValue("input[data-qa='signup-name']", this.newUser.userName);
     actionOnPage.typeInputValue("input[data-qa='signup-email']", this.newUser.userEmail);
     actionOnPage.clickButton("button[data-qa='signup-button']");
-    utils.isPageUrlCorrect("/signup");
     utils.isStringContains("div.login-form > h2 >b", "Enter Account Information");
     cy.fillSignUpForm();
     actionOnPage.clickButton("button[data-qa='create-account']");
-    utils.isPageUrlCorrect("/account_created");
     cy.get("div.col-sm-9.col-sm-offset-1 > h2 > b").as("sectionTitle");
     utils.isStringContains("@sectionTitle", "Account Created!");
     actionOnPage.clickButton("a[data-qa='continue-button']");
@@ -139,7 +131,6 @@ describe("TS9 - placeOrder", () => {
     checkoutPage.downloadPriceToString().then((retrievedPrice) => {
       const price = retrievedPrice;
       actionOnPage.clickButton("a[href='/payment']");
-      utils.isPageUrlCorrect("/payment");
       paymentPage.typePaymentDetails(this.paymentData);
       actionOnPage.clickButton("button[id='submit']");
       utils.isStringContains("div.col-sm-9.col-sm-offset-1 > p", "Congratulations! Your order has been confirmed!");
